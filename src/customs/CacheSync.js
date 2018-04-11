@@ -7,8 +7,4 @@ module.exports = class CacheSync extends Piece {
 			enabled: true
 		});
 	}
-
-	init() {
-
-	}
 };
