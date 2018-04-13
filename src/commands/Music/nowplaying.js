@@ -14,10 +14,11 @@ module.exports = class NowPlayingCommand extends Command {
 		const { nowPlaying } = msg.guild.music;
 		return msg.send(
 			new this.client.methods.Embed()
-				.setDescription(`[${nowPlaying.info.title}](${nowPlaying.info.uri})`)
-				.addField('Author', nowPlaying.info.author, true)
-				.addField('Livestream?', nowPlaying.info.isStream ? 'Yes' : 'No', true)
-				.addField('Length', nowPlaying.info.isStream ? '∞ (Livestream)' : this.format(nowPlaying.info.length / 1000), true)
+				.setAuthor(nowPlaying.userDisplayName, nowPlaying.userAvatarURL)
+				.setDescription(`[${nowPlaying.title}](${nowPlaying.url})`)
+				.addField('Author', nowPlaying.author, true)
+				.addField('Livestream?', nowPlaying.isStream ? 'Yes' : 'No', true)
+				.addField('Length', nowPlaying.isStream ? '∞ (Livestream)' : this.format(nowPlaying.length / 1000), true)
 				.setColor(0xffcc00)
 		);
 	}

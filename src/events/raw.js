@@ -10,9 +10,7 @@ module.exports = class RawEvent extends Event {
 		});
 		this.methods = {
 			MESSAGE_REACTION_ADD: 'messageReactionAdd',
-			MESSAGE_REACTION_REMOVE: 'messageReactionRemove',
-			VOICE_STATE_UPDATE: 'voiceStateUpdate',
-			VOICE_SERVER_UPDATE: 'voiceServerUpdate'
+			MESSAGE_REACTION_REMOVE: 'messageReactionRemove'
 		};
 		this.keys = Object.keys(this.methods);
 	}
@@ -49,13 +47,5 @@ module.exports = class RawEvent extends Event {
 		const reaction = message.reactions.get(emojiKey);
 
 		client.emit('messageReactionRemove', reaction, user);
-	}
-
-	voiceStateUpdate(data) {
-		return this.client.customPieceStore.get('Lavalink').lavalink.voiceStateUpdate(data);
-	}
-
-	voiceServerUpdate(data) {
-		return this.client.customPieceStore.get('Lavalink').lavalink.voiceServerUpdate(data);
 	}
 };

@@ -10,17 +10,9 @@ module.exports = class LeaveCommand extends Command {
 	}
 
 	run(msg) {
-		msg.guild.music.reset();
-		this.client.ws.send({
-			shard: this.client.shard.id,
-			op: 4,
-			d: { // eslint-disable-line id-length
-				guild_id: msg.guild.id, // eslint-disable-line camelcase
-				channel_id: null, // eslint-disable-line camelcase
-				self_mute: false, // eslint-disable-line camelcase
-				self_deaf: false // eslint-disable-line camelcase
-			}
-		});
+		const { guild } = msg.member;
+		guild.music.reset();
+		guild.player.leave();
 		return msg.send('bye bye :wave:');
 	}
 };

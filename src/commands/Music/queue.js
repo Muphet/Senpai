@@ -1,4 +1,4 @@
-const { Command } = require('klasa');
+const { Command, RichDisplay } = require('klasa');
 
 module.exports = class QueueCommand extends Command {
 	constructor(...args) {
@@ -10,31 +10,38 @@ module.exports = class QueueCommand extends Command {
 		});
 	}
 
-	run(msg) {
-		const { _queue } = msg.guild.music;
-		let time = _queue.map(song => song.info.isStream ? 0 : song.info.length).reduce((a, b) => a + b);
+	async run(msg) {
+		const { queue } = msg.guild.music;
+		let time = queue.map(song => song.length).reduce((a, b) => a + b);
+		const chunks = this.getQueueChunk(queue);
 		time = this.format(time / 1000);
-		const songs = _queue.map(song => `${song.info.title}\nRequested by ${song.user.name}`);
-		const embed = this.constructRichEmbed(songs, msg, time);
-		return msg.send(embed);
+		const menu = new RichDisplay(
+			new this.client.methods.Embed()
+				.setColor('RANDOM')
+				.setAuthor(msg.member.displayName, msg.author.displayAvatarURL())
+				.setTitle(`Music Queue for ${msg.guild.name}`)
+				.setDescription('Scroll between the pages using the provided reaction emotes.')
+		);
+
+		for (const page of chunks) {
+			menu.addPage(template => {
+				let text = '';
+				for (const song of page) {
+					text += `[${song.title}](${song.url}) by ${song.author} - ${song.userMention} [${this.format(song.length / 1000)}]\n\n`;
+				}
+				return template
+					.setDescription(text)
+					.setFooter(time);
+			});
+		}
+		return menu.run(await msg.send('Loading Queue...'), { filter: (reaction, user) => user.id === msg.author.id });
 	}
 
-	constructRichEmbed(songArray, msg, time) {
-		const first = songArray.shift();
-		const embed = new this.client.methods.Embed()
-			.setAuthor(msg.member.displayName, msg.author.displayAvatarURL())
-			.addField('Currently Playing', `\`\`\`\n${first}\`\`\``)
-			.setColor('RANDOM');
-		if (songArray.length > 5) {
-			let before = songArray.length;
-			songArray.length = 5;
-			embed.setFooter(`and ${before - songArray.length} songs more... | total queue length: ${time}`);
-		} else {
-			embed.setFooter(`total queue length: ${time}`);
+	getQueueChunk(queue) {
+		const splitted = [];
+		for (var i = 0; i < queue.length; i += 10) {
+			splitted.push(queue.slice(i, i + 10));
 		}
-		for (const index in songArray) {
-			embed.addField(`#${Number(index) + 1}`, `\`\`\`\n${songArray[index]}\`\`\``);
-		}
-		return embed;
+		return splitted;
 	}
 };

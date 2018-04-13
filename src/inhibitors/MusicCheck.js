@@ -15,7 +15,7 @@ module.exports = class extends Inhibitor {
 		if (!msg.guild) return;
 		if (!msg.member) await msg.guild.members.fetch(msg.author);
 		const { voiceChannel } = msg.member;
-		const { _queue } = msg.guild.music;
+		const { queue } = msg.guild.music;
 		let { me } = msg.guild;
 		if (cmd.name === 'join') {
 			if (!voiceChannel) throw 'You must be in a Voice channel to use this Command!';
@@ -26,7 +26,7 @@ module.exports = class extends Inhibitor {
 		}
 		if (!me.voiceChannelID) throw `Im not in a Voice channel on this Server. Use the Join command to change that!.`;
 		if (['queue', 'clearqueue', 'removsong', 'loop', 'shuffle'].includes(cmd.name)) {
-			if (!_queue.length) throw 'The Queue is empty!';
+			if (!queue.length) throw 'The Queue is empty!';
 		}
 		if (['skip', 'nowplaying'].includes(cmd.name)) {
 			if (!msg.guild.music.playing) throw `Im not playing music!`;

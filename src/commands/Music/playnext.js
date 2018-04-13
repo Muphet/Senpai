@@ -26,27 +26,27 @@ module.exports = class PlayNextCommand extends Command {
 				songs = arr;
 			}
 			if (songs.length > 1) {
-				await this._playlist(songs, msg, { name: msg.member.displayName, url: msg.member.user.displayAvatarURL() });
+				await this._playlist(songs, msg, msg.member);
 			} else {
-				await this._song(songs[0], msg, { name: msg.member.displayName, url: msg.member.user.displayAvatarURL() });
+				await this._song(songs[0], msg, msg.member);
 			}
 		} catch (error) {
 			await msg.send(error.message);
 		}
 	}
 
-	async _playlist(songs, message, requestor) {
+	async _playlist(songs, message, member) {
+		const promises = [];
 		for (const song of songs) {
-			song.user = requestor;
-			message.guild.music.queueNext(song);
+			promises.push(message.guild.music.queueSongNext(song, member));
 		}
-		await message.send(`**Queued** ${songs.length} songs.`);
+		await Promise.all(promises);
+		return message.send(`**Queued** ${songs.length} songs.`);
 	}
 
-	async _song(song, message, requestor) {
-		song.user = requestor;
-		message.guild.music.queueNext(song);
-		await message.send(`**Queued:** ${song.info.title}.`);
+	async _song(song, message, member) {
+		await message.guild.music.queueSongNext(song, member);
+		return message.send(`**Queued:** ${song.info.title}.`);
 	}
 
 	isLink(input) {

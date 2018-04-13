@@ -7,12 +7,12 @@ module.exports = class SkipCommand extends Command {
 			cooldown: 5,
 			aliases: ['next'],
 			description: 'Skip the currently playing song',
-			usage: '<amount_to_skip:number>'
+			usage: '[amount_to_skip:number]'
 		});
 	}
 
-	run(msg, [number]) {
-		const skipped = msg.guild.music.skip(number);
+	async run(msg, [number = 1]) {
+		const skipped = await msg.guild.music.skip(number - 1);
 		return msg.send(`skipped ${skipped.length} songs`);
 	}
 };

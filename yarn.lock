@@ -356,7 +356,7 @@ detect-libc@^1.0.2:
 
 discord.js@discordjs/discord.js:
   version "12.0.0-dev"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/cb69102e5e2fda47172c306f76fcaa16093f0b11"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/61ad9475de1c47a9298d415b030aa44803d5a197"
   dependencies:
     pako "^1.0.0"
     prism-media "^0.2.0"
@@ -821,8 +821,8 @@ klasa@dirigeants/klasa:
     fs-nextra "^0.3.2"
 
 lavalink@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/lavalink/-/lavalink-0.4.0.tgz#36c5bf271fc46ab37eaf3545c9c128e0645920c1"
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/lavalink/-/lavalink-0.4.2.tgz#b948e5b8952c5957a2fe043781853d4a8fe92158"
   dependencies:
     ws "^4.0.0"
 
@@ -930,8 +930,8 @@ node-osu@^1.3.0:
     superagent "^3.6.0"
 
 node-pre-gyp@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.9.0.tgz#bdd4c3afac9b1b1ebff0a9ff3362859eb6781bb8"
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.9.1.tgz#f11c07516dd92f87199dbc7e1838eab7cd56c9e0"
   dependencies:
     detect-libc "^1.0.2"
     mkdirp "^0.5.1"

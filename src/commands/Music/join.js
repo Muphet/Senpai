@@ -12,7 +12,7 @@ module.exports = class JoinCommand extends Command {
 
 	run(msg) {
 		const { voiceChannel, guild } = msg.member;
-		this.client.customPieceStore.get('Lavalink').lavalink.players.get(guild.id).join(voiceChannel.id, { deaf: false });
+		guild.player.join(voiceChannel.id);
 		return msg.send('successfull joined your Voice Channel');
 	}
 };

@@ -16,33 +16,34 @@ module.exports = class PlayCommand extends Command {
 		await msg.send('*adding your Song/Playlist to the queue....*');
 		try {
 			let songs = [];
-			if (this.isLink(query.join(' '))) {
-				songs = await this.client.customPieceStore.get('Lavalink').lavalink.resolveTrack(query.join(' '));
+			const queryString = query.join(' ');
+			if (this.isLink(queryString)) {
+				songs = await this.client.lavalink.load(queryString);
 			} else {
-				const searchResult = await this.client.customPieceStore.get('Lavalink').lavalink.resolveTrack(`ytsearch: ${query}`);
+				const searchResult = await this.client.lavalink.load(`ytsearch: ${queryString}`);
 				songs.push(searchResult[0]);
 			}
 			if (songs.length > 1) {
-				return this._playlist(songs, msg, { name: msg.member.displayName, url: msg.author.displayAvatarURL() });
+				return this._playlist(songs, msg, msg.member);
 			} else {
-				return this._song(songs[0], msg, { name: msg.member.displayName, url: msg.author.displayAvatarURL() });
+				return this._song(songs[0], msg, msg.member);
 			}
 		} catch (error) {
 			return msg.send(error.message);
 		}
 	}
 
-	_playlist(songs, message, requestor) {
+	async _playlist(songs, message, member) {
+		const promises = [];
 		for (const song of songs) {
-			song.user = requestor;
-			message.guild.music.queue(song);
+			promises.push(message.guild.music.queueSong(song, member));
 		}
+		await Promise.all(promises);
 		return message.send(`**Queued** ${songs.length} songs.`);
 	}
 
-	_song(song, message, requestor) {
-		song.user = requestor;
-		message.guild.music.queue(song);
+	async _song(song, message, member) {
+		await message.guild.music.queueSong(song, member);
 		return message.send(`**Queued:** ${song.info.title}.`);
 	}
 
