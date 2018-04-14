@@ -9,10 +9,10 @@ module.exports = class LeaveCommand extends Command {
 		});
 	}
 
-	run(msg) {
+	async run(msg) {
 		const { guild } = msg.member;
 		guild.music.reset();
-		guild.player.leave();
+		await guild.player.leave();
 		return msg.send('bye bye :wave:');
 	}
 };

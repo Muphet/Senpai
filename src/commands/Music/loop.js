@@ -14,7 +14,7 @@ module.exports = class LoopCommand extends Command {
 		if (loop) {
 			msg.guild.music.loop = false;
 			return msg.send('stopping the loop!');
-		} else if (!loop) {
+		} else {
 			msg.guild.music.loop = true;
 			return msg.send('looping the current queue!');
 		}

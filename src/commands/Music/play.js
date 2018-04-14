@@ -1,4 +1,4 @@
-const { Command } = require('klasa');
+const { Command, RichMenu } = require('klasa');
 
 module.exports = class PlayCommand extends Command {
 	constructor(...args) {
@@ -21,7 +21,23 @@ module.exports = class PlayCommand extends Command {
 				songs = await this.client.lavalink.load(queryString);
 			} else {
 				const searchResult = await this.client.lavalink.load(`ytsearch: ${queryString}`);
-				songs.push(searchResult[0]);
+				const menu = new RichMenu(
+					new this.client.methods.Embed()
+						.setAuthor(msg.member.displayName, msg.author.displayAvatarURL())
+						.setTitle('Song selection')
+						.setDescription('Use number reactions to select an Song, use the arrow reactions to scroll between pages.')
+						.setColor('RANDOM')
+				);
+
+				for (const song of searchResult) {
+					menu.addOption(`${song.info.title} - [${this.format(song.info.length / 1000)}]`, `by ${song.info.author}`);
+				}
+
+				const collector = await menu.run(await msg.send('Loading Songs for this search...'));
+
+				const choice = await collector.selection;
+				if (choice === null) return collector.message.delete();
+				songs.push(searchResult[choice]);
 			}
 			if (songs.length > 1) {
 				return this._playlist(songs, msg, msg.member);
@@ -45,9 +61,5 @@ module.exports = class PlayCommand extends Command {
 	async _song(song, message, member) {
 		await message.guild.music.queueSong(song, member);
 		return message.send(`**Queued:** ${song.info.title}.`);
-	}
-
-	isLink(input) {
-		return /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g.test(input); // eslint-disable-line no-useless-escape
 	}
 };

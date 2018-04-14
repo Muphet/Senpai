@@ -28,8 +28,11 @@ module.exports = class extends Inhibitor {
 		if (['queue', 'clearqueue', 'removsong', 'loop', 'shuffle'].includes(cmd.name)) {
 			if (!queue.length) throw 'The Queue is empty!';
 		}
-		if (['skip', 'nowplaying'].includes(cmd.name)) {
+		if (['skip', 'nowplaying', 'pause'].includes(cmd.name)) {
 			if (!msg.guild.music.playing) throw `Im not playing music!`;
+		}
+		if (cmd.name === 'resume') {
+			if (!msg.guild.music.paused) throw 'The Music is not paused!';
 		}
 	}
 };

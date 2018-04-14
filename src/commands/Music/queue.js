@@ -11,7 +11,7 @@ module.exports = class QueueCommand extends Command {
 	}
 
 	async run(msg) {
-		const { queue } = msg.guild.music;
+		const { queue, paused, playing } = msg.guild.music;
 		let time = queue.map(song => song.length).reduce((a, b) => a + b);
 		const chunks = this.getQueueChunk(queue);
 		time = this.format(time / 1000);
@@ -19,10 +19,11 @@ module.exports = class QueueCommand extends Command {
 			new this.client.methods.Embed()
 				.setColor('RANDOM')
 				.setAuthor(msg.member.displayName, msg.author.displayAvatarURL())
-				.setTitle(`Music Queue for ${msg.guild.name}`)
-				.setDescription('Scroll between the pages using the provided reaction emotes.')
+				.setTitle(`Music Queue for ${msg.guild.name}Queue length: ${time}`)
+				.addField(`Queue length`, time, true)
+				.addField('Playing?', playing ? 'Yes' : 'No', true)
+				.addField('Paused?', paused ? 'Yes' : 'No', true)
 		);
-
 		for (const page of chunks) {
 			menu.addPage(template => {
 				let text = '';
@@ -30,8 +31,7 @@ module.exports = class QueueCommand extends Command {
 					text += `[${song.title}](${song.url}) by ${song.author} - ${song.userMention} [${this.format(song.length / 1000)}]\n\n`;
 				}
 				return template
-					.setDescription(text)
-					.setFooter(time);
+					.setDescription(text);
 			});
 		}
 		return menu.run(await msg.send('Loading Queue...'), { filter: (reaction, user) => user.id === msg.author.id });

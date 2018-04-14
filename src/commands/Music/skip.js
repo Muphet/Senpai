@@ -12,7 +12,7 @@ module.exports = class SkipCommand extends Command {
 	}
 
 	async run(msg, [number = 1]) {
-		const skipped = await msg.guild.music.skip(number - 1);
+		const skipped = await msg.guild.music.skip(number);
 		return msg.send(`skipped ${skipped.length} songs`);
 	}
 };

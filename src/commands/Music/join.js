@@ -10,9 +10,9 @@ module.exports = class JoinCommand extends Command {
 		});
 	}
 
-	run(msg) {
+	async run(msg) {
 		const { voiceChannel, guild } = msg.member;
-		guild.player.join(voiceChannel.id);
+		await guild.player.join(voiceChannel.id);
 		return msg.send('successfull joined your Voice Channel');
 	}
 };

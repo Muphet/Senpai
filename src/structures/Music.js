@@ -24,16 +24,21 @@ module.exports = class Music {
 		return this._play();
 	}
 
-	async skip(amount = 0) {
-		const skipped = this.queue.splice(0, amount);
+	async skip(amount = 1) {
+		const realAmount = amount - 1;
+		const skipped = this.queue.splice(0, realAmount);
 		const skip = this.nowPlaying;
 		await this._stop();
-		if (!amount) {
+		if (!realAmount) {
 			return [skip];
 		} else {
 			skipped.push(skip);
 			return skipped;
 		}
+	}
+
+	pause(boolean = true) {
+		return this.player.pause(boolean);
 	}
 
 	shuffle() {
@@ -55,7 +60,7 @@ module.exports = class Music {
 	}
 
 	async _play(options) {
-		if (this.busy) return;
+		if (this.busy || !this.queue.length) return;
 		this.preparing = true;
 		const { channel } = this;
 		const embed = new this.client.methods.Embed()
