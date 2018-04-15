@@ -11,7 +11,7 @@ module.exports = class BirdCommand extends Command {
 	}
 
 	async run(msg) {
-		const result = await searchImages(this.client.config.token.pixabay, 'bird');
+		const result = await searchImages(this.client.config.tokens.pixabay, 'bird');
 		const { webformatURL } = result.hits[Math.floor(Math.random() * result.hits.length)];
 		return msg.send(new this.client.methods.Embed().setImage(webformatURL));
 	}

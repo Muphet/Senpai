@@ -11,7 +11,7 @@ module.exports = class FoxCommand extends Command {
 	}
 
 	async run(msg) {
-		const result = await searchImages(this.config.token.pixabay, 'fox');
+		const result = await searchImages(this.client.config.tokens.pixabay, 'fox');
 		const { webformatURL } = result.hits[Math.floor(Math.random() * result.hits.length)];
 		return msg.send(new this.client.methods.Embed().setImage(webformatURL));
 	}
