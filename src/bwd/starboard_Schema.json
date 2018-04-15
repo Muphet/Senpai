@@ -1,1 +1,14 @@
-{"guild":{"type":"string"},"starCount":{"type":"integer"},"author":{"type":"string"},"sentMessage":{"type":"string"}}
+{  
+	"guild":{  
+	   "type":"string"
+	},
+	"starCount":{  
+	   "type":"integer"
+	},
+	"author":{  
+	   "type":"string"
+	},
+	"sentMessage":{  
+	   "type":"string"
+	}
+ }

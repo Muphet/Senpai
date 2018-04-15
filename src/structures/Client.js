@@ -14,10 +14,9 @@ const {
 	supportServerLink,
 	voteLink,
 	pixabayToken,
-	databaseName,
-	databaseUser,
-	databasePW,
-	databaseHost
+	databaseName: name,
+	databaseHost: host,
+	databasePort: port
 } = process.env;
 
 module.exports = class SenpaiClient extends Client {
@@ -27,7 +26,7 @@ module.exports = class SenpaiClient extends Client {
 		this.tokens = { bottoken, osuToken, googleToken, omwToken, dBotsToken, discordbotsToken, pixabayToken, wolkeToken };
 		this.constants = { supportServerLink, voteLink };
 		this.botConfig = { prefix };
-		this.databaseConfig = { databaseHost, databaseName, databaseUser, databasePW };
+		this.dbConf = { host, name, port };
 		this.customPieceStore = new CustomPieceStore(this);
 		this.registerStore(this.customPieceStore);
 		this.registerPiece('BotListHandler', this.customPieceStore);

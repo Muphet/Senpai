@@ -6,6 +6,7 @@ module.exports = class NekoCommand extends Command {
 		super(...args, {
 			cooldown: 5,
 			botPerms: ['ATTACH_FILES'],
+			aliases: ['catgirl'],
 			description: 'Cute neko'
 		});
 	}

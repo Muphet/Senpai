@@ -1,1 +1,25 @@
-{"action":{"type":"string"},"guild":{"type":"string"},"target":{"type":"string"},"moderator":{"type":"string"},"reason":{"type":"string","default":null},"caseNumber":{"type":"integer"},"message":{"type":"string","default":null}}
+{  
+	"action":{  
+	   "type":"string"
+	},
+	"guild":{  
+	   "type":"string"
+	},
+	"target":{  
+	   "type":"string"
+	},
+	"moderator":{  
+	   "type":"string"
+	},
+	"reason":{  
+	   "type":"string",
+	   "default":null
+	},
+	"caseNumber":{  
+	   "type":"integer"
+	},
+	"message":{  
+	   "type":"string",
+	   "default":null
+	}
+ }

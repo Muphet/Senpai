@@ -11,15 +11,16 @@ module.exports = class MessageReactionAddEvent extends Event {
 	}
 
 	async run(messageReaction, user) {
-		if (user.bot || messageReaction.emoji.name !== '⭐' || message.author.id === user.id || !guild) return;
-		let { message, client, count: reactionCount } = messageReaction;
+		let { message, count: reactionCount } = messageReaction;
 		const { guild, author } = message;
-		const { starboard } = guild.configs.channels;
+		if (user.bot || messageReaction.emoji.name !== '⭐' || author.id === user.id || !guild) return;
+		let { starboard } = guild.configs.channels;
 		const { count } = guild.configs.starboard;
 		if (!starboard) return;
-		if (message.channel.id === starboard.id) return;
-		let entry = client.gateways.starboard.cache.get(message.id);
-		await messageReaction.fetchUsers();
+		if (message.channel.id === starboard) return;
+		starboard = guild.channels.get(starboard);
+		let entry = this.client.gateways.starboard.cache.get(message.id);
+		await messageReaction.users.fetch();
 		if (messageReaction.users.has(message.author.id)) reactionCount -= 1;
 		if (reactionCount < count) return;
 		let sentMessage;
@@ -29,12 +30,12 @@ module.exports = class MessageReactionAddEvent extends Event {
 			sentMessage = await this.createStarboardMessage({ message, reactionCount, starboard });
 		}
 		entry = entry || this.client.gateways.starboard.insertEntry(message.id);
-		await entry.update({ guild: message.guild, starCount: reactionCount, author, sentMessage });
+		await entry.update({ guild: message.guild, starCount: reactionCount, author, sentMessage: sentMessage.id });
 	}
 
 	createStarboardMessage({ message, reactionCount, starboard }) {
 		const embed = new this.client.methods.Embed()
-			.setAuthor(`${message.author.tag}`)
+			.setAuthor(`${message.author.tag}`, message.author.displayAvatarURL())
 			.setThumbnail(message.author.displayAvatarURL)
 			.addField(`ID:`, `${message.id}`, true)
 			.addField('Channel', `${message.channel}`, true)
@@ -47,7 +48,7 @@ module.exports = class MessageReactionAddEvent extends Event {
 			if (matches) embed.setImage(matches[0]);
 		}
 		if (message.attachments.size === 1) {
-			if (/\.(gif|jpg|jpeg|tiff|png)$/i.test(message.attachments.first().filename)) embed.setImage(`${message.attachments.first().url}`);
+			if (/\.(gif|jpg|jpeg|tiff|png)$/i.test(message.attachments.first().name)) embed.setImage(`${message.attachments.first().url}`);
 		}
 		return starboard.send(embed);
 	}

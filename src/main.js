@@ -1,6 +1,7 @@
 const { join } = require('path');
 const Client = require(join(__dirname, 'structures', 'Client.js'));
 const permissionsLevels = require(join(__dirname, 'structures', 'PermissionLevel.js'));
+const GatewayInit = require(join(__dirname, 'structures', 'GatewayInit.js'));
 const { prefix } = process.env;
 
 const client = new Client({
@@ -9,12 +10,11 @@ const client = new Client({
 	prefix,
 	cmdEditing: true,
 	cmdLogging: true,
-	cmdDeleting: true,
 	cmdPrompt: true,
 	ignoreSelf: true,
 	ignoreBots: true,
 	permissionsLevels,
-	providers: { default: 'postgres' },
+	providers: { default: 'mongo' },
 	promptTime: 20000,
 	pieceDefaults: { commands: { deletable: true } },
 	readyMessage: readyClient => [
@@ -26,5 +26,7 @@ const client = new Client({
 		'-----------------------------------------------------------------------------'
 	]
 });
+
+GatewayInit.init(client);
 
 client.login(client.tokens.bottoken);

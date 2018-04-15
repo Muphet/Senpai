@@ -11,25 +11,26 @@ module.exports = class MessageReactionRemoveEvent extends Event {
 	}
 
 	async run(messageReaction, user) {
-		if (user.bot || messageReaction.emoji.name !== '⭐' || message.author.id === user.id || !guild) return;
-		let { message, client, count: reactionCount } = messageReaction;
+		let { message, count: reactionCount } = messageReaction;
 		const { guild } = message;
-		const { starboard } = guild.configs.channels;
+		if (user.bot || messageReaction.emoji.name !== '⭐' || message.author.id === user.id || !guild) return;
+		let { starboard } = guild.configs.channels;
+		starboard = guild.channels.get(starboard);
 		const { count } = guild.configs.starboard;
-		await messageReaction.fetchUsers();
+		await messageReaction.users.fetch();
 		if (messageReaction.users.has(message.author.id)) reactionCount -= 1;
-		const entry = client.gateways.starboard.cache.get(message.id);
+		const entry = this.client.gateways.starboard.cache.get(message.id);
 		if (!entry) return;
 		if (reactionCount < count) {
-			await this.deleteStarboardMessage({ messageID: entry.id, starboard });
-			client.gateways.starboard.deleteEntry(entry.id);
+			await this.deleteStarboardMessage({ messageID: entry.sentMessage, starboard });
+			await this.client.gateways.starboard.deleteEntry(entry.id);
 		} else {
-			await this.client.events.get('messageReactionAdd').editStarboardMessage({ reactionCount, starboard, messageID: entry.id });
+			await this.client.events.get('messageReactionAdd').editStarboardMessage({ reactionCount, starboard, messageID: entry.sentMessage });
 			await entry.update({ guild: message.guild, starCount: reactionCount });
 		}
 	}
 
-	async deleteStarboardMessage(messageID, starboard) {
+	async deleteStarboardMessage({ messageID, starboard }) {
 		let message = await starboard.messages.fetch(messageID);
 		return message.delete();
 	}

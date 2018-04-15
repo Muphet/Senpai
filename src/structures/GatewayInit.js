@@ -1,14 +1,14 @@
-module.exports = class GatewayCreator {
+module.exports = class GatewayInit {
 	constructor() {
 		throw new Error('This class is abstracted and can\'t ne instanceiated');
 	}
 
-	async init(client) {
-		await this.createStarboardGateaway(client);
+	static async init(client) {
 		await this.createCasesGateaway(client);
+		return this.createStarboardGateaway(client);
 	}
 
-	createStarboardGateaway(client) {
+	static createStarboardGateaway(client) {
 		return client.gateways.register('starboard', {
 			guild: { type: 'guild' },
 			starCount: { type: 'integer' },
@@ -17,7 +17,7 @@ module.exports = class GatewayCreator {
 		});
 	}
 
-	createCasesGateaway(client) {
+	static createCasesGateaway(client) {
 		return client.gateways.register('cases', {
 			action: { type: 'string' },
 			guild: { type: 'guild' },

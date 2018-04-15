@@ -39,7 +39,7 @@ module.exports = class InfoCommand extends Command {
 			.addField('Support Server', `[Server](${client.constants.supportServerLink})`, true)
 			.addField('Shards:', `${client.shard.id + 1}/${client.shard.count}`, true)
 			.addField('Senpai Version:', this.client.version, true)
-			.addField('Playing Music on:', musicCount)
+			.addField('Playing Music on:', musicCount, true)
 			.setTimestamp()
 			.setColor('DARK_GREEN');
 		return msg.sendEmbed(embed);
