@@ -4,7 +4,6 @@ module.exports = class LeaveCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			
 			description: 'Leave the VoiceChannel im currently connected to and removes the queue.'
 		});
 	}
