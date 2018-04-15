@@ -4,7 +4,6 @@ module.exports = class PingCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			aliases: ['pong'],
 			usage: '<message:str> [channel:channel]',
 			usageDelim: ' ',

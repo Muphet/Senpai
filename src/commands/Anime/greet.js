@@ -6,7 +6,7 @@ module.exports = class GreetCommand extends Command {
 		super(...args, {
 			cooldown: 5,
 			usage: '[member:member]',
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'Greet someone or get greeted'
 		});
 	}

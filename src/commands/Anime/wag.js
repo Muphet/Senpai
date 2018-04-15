@@ -5,7 +5,7 @@ module.exports = class WagCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			cooldown: 5,
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'Don\'t wag your finger at me'
 		});
 	}

@@ -13,7 +13,7 @@ module.exports = class extends Extendable {
 	}
 
 	get extend() {
-		if (!wolkeClient) wolkeClient = new Client({ tokenType: Wolke, token: this.client.tokens.wolkeToken });
+		if (!wolkeClient) wolkeClient = new Client({ tokenType: Wolke, token: this.client.config.tokens.wolke });
 		return wolkeClient;
 	}
 };

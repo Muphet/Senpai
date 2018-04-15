@@ -5,7 +5,7 @@ module.exports = class NaniCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			cooldown: 5,
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'omae wa mou shindeiru, NANI!?!?'
 		});
 	}

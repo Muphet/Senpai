@@ -4,7 +4,6 @@ const { get } = require('snekfetch');
 module.exports = class MangaCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			aliases: ['mangu'],
 			usage: '<manga_name:str>',
 			botPerms: ['EMBED_MESSAGE'],

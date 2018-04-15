@@ -4,7 +4,6 @@ module.exports = class ServerInfoCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			botPerms: ['EMBED_MESSAGE'],
 			description: 'Shows basic information about this server'
 		});

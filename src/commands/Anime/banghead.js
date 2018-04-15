@@ -5,7 +5,7 @@ module.exports = class BangHeadCommand extends Command {
 		super(...args, {
 			cooldown: 5,
 			aliases: ['headbang'],
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'TRAPS ARE FUCKING GAY!'
 		});
 	}

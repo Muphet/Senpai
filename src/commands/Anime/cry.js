@@ -6,7 +6,7 @@ module.exports = class CryCommand extends Command {
 			cooldown: 5,
 			aliases: ['sob'],
 			usage: '[member:member]',
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'Start Ctying or cry on someones shoulder'
 		});
 	}

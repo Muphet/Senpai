@@ -5,7 +5,7 @@ module.exports = class ShrugCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			cooldown: 5,
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: '*Shrug* whatever'
 		});
 	}

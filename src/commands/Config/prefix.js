@@ -1,17 +1,16 @@
 const { Command } = require('klasa');
 
-
 module.exports = class PrefixCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
-			botPerms: ['EMBED_MESSAGE'],
+			permLevel: 6,
 			usage: '<prefix:string{1,5}>',
-			description: 'Shows my current Ping to the Discord API'
+			description: 'Changes the prefix set for this server'
 		});
 	}
 
 	async run(msg, [prefix]) {
-		msg.guild.configs.update('prefix', prefix);
+		await msg.guild.configs.update('prefix', prefix, { avoidUnconfigurable: true, action: 'add' });
+		return msg.send(`Prefix successful updated to ${prefix}`);
 	}
 };

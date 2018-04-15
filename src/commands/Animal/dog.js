@@ -1,13 +1,12 @@
 const { Command } = require('klasa');
 
 
-module.exports = class CatCommand extends Command {
+module.exports = class DoggoCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
-			aliases: ['kitty', 'kitten'],
-			botPerms: ['ATTACH_FILES'],
-			description: 'Catto'
+			aliases: ['doggo', 'pupper', 'puppy', 'pup'],
+			botPerms: ['EMBED_MESSAGE'],
+			description: 'Doggo'
 		});
 	}
 

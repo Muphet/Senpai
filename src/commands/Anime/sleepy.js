@@ -6,7 +6,7 @@ module.exports = class SleepyCommand extends Command {
 		super(...args, {
 			cooldown: 5,
 			aliases: ['sleep', 'slep'],
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'I slep'
 		});
 	}

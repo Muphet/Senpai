@@ -5,7 +5,7 @@ module.exports = class PoutCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			cooldown: 5,
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: '*Pouts in corner*'
 		});
 	}

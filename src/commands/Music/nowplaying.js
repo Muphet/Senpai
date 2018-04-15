@@ -4,7 +4,6 @@ module.exports = class NowPlayingCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			aliases: ['np'],
 			description: 'Shows information about the current playing Song.'
 		});

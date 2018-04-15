@@ -9,8 +9,8 @@ module.exports = class MongoDB extends Provider {
 	}
 
 	async init() {
-		const mongoClient = await Mongo.connect(`mongodb://${this.client.dbConf.host}:${this.client.dbConf.port}/${this.client.dbConf.name}`);
-		this.db = mongoClient.db(this.client.dbConf.name);
+		const mongoClient = await Mongo.connect(`mongodb://${this.client.config.db.host}:${this.client.config.db.port}/${this.client.config.db.name}`);
+		this.db = mongoClient.db(this.client.config.db.name);
 	}
 
 	/* Table methods */

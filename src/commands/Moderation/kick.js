@@ -4,7 +4,6 @@ module.exports = class KickCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			permLevel: 4,
 			usage: '<member_to_kick:member> [reason:string]',
 			usageDelim: ' ',

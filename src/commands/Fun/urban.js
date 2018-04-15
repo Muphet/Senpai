@@ -4,7 +4,6 @@ const { all } = require('relevant-urban');
 module.exports = class UrbanCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			usage: '<phrase:str>',
 			botPerms: ['EMBED_MESSAGE'],
 			description: 'Search for a word on the urban dictonary'

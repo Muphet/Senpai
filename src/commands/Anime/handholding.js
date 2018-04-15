@@ -6,7 +6,7 @@ module.exports = class HandholdingCommand extends Command {
 		super(...args, {
 			cooldown: 5,
 			usage: '[member:member]',
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'Hold someones hand or hold my hand'
 		});
 	}

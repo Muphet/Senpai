@@ -4,7 +4,6 @@ const figlet = require('figlet');
 module.exports = class AsciiCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			usage: '<text:str>',
 			description: 'Generates Ascii Art out of your text'
 		});

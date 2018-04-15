@@ -6,7 +6,7 @@ module.exports = class PatCommand extends Command {
 		super(...args, {
 			cooldown: 5,
 			usage: '[member:member]',
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'Pat someone or get pat'
 		});
 	}

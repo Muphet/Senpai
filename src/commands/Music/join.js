@@ -4,7 +4,6 @@ module.exports = class JoinCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			aliases: ['summon'],
 			description: 'Joins your current VoiceChannel'
 		});

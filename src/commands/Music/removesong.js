@@ -4,7 +4,6 @@ module.exports = class RemoveSongCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			usage: '<SongIndex:int>',
 			aliases: ['deletesong'],
 			description: 'Deletes are song from the queue.'
@@ -13,6 +12,6 @@ module.exports = class RemoveSongCommand extends Command {
 
 	run(msg, [index]) {
 		const deletedSong = msg.guild.music.remove(index);
-		return msg.send(`I've deleted the Song ${deletedSong.info.title} from the queue`);
+		return msg.send(`I've deleted the Song ${deletedSong.title} from the queue`);
 	}
 };

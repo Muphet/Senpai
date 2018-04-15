@@ -10,4 +10,8 @@ class PermissionError extends Error {
 
 }
 
-module.exports = { MusicError, APIError, PermissionError };
+class UsageError extends Error {
+
+}
+
+module.exports = { MusicError, APIError, UsageError, PermissionError };

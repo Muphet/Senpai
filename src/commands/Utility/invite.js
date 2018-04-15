@@ -4,7 +4,6 @@ const { Command } = require('klasa');
 module.exports = class InviteCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			botPerms: ['EMBED_MESSAGE'],
 			description: 'Shows my Invite Link.'
 		});
@@ -12,7 +11,7 @@ module.exports = class InviteCommand extends Command {
 
 	async run(msg) {
 		const embed = new this.client.methods.Embed()
-			.addField('Invite Link', `[Click Me](${this.client.constants.inviteURL})`)
+			.addField('Invite Link', `[Click Me](${this.client.config.constants.inviteURL})`)
 			.setColor(0x80ff00)
 			.setTimestamp();
 		await msg.send(embed);

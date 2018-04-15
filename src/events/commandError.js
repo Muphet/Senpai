@@ -1,6 +1,6 @@
 const { Event } = require('klasa');
 const { join } = require('path');
-const { APIError, MusicError, PermissionError } = require(join(__dirname, '..', 'util', 'CustomErrors.js'));
+const { APIError, MusicError, PermissionError, UsageError } = require(join(__dirname, '..', 'util', 'CustomErrors.js'));
 
 module.exports = class extends Event {
 	constructor(...args) {
@@ -10,7 +10,7 @@ module.exports = class extends Event {
 			event: 'commandError',
 			once: false
 		});
-		this.errorClasses = [APIError, MusicError, PermissionError];
+		this.errorClasses = [APIError, MusicError, PermissionError, UsageError];
 	}
 
 	run(msg, command, params, error) {
@@ -22,7 +22,7 @@ module.exports = class extends Event {
 			msg.send(
 				[`An error occurred while running the command: \`${error.name}: ${error.message}\``,
 					'You shouldn\'t ever receive an error like this.',
-					`Please contact ${owner.tag} in this server: ${this.client.constants.supportServerLink}`].join('\n'), { reply: msg.member || msg.author });
+					`Please contact ${owner.tag} in this server: ${this.client.config.constants.supportServerLink}`].join('\n'), { reply: msg.member || msg.author });
 			return owner.send(`Error: \`\`\`js\n${error.stack}\`\`\` has occured`);
 		} else {
 			return msg.send(error);

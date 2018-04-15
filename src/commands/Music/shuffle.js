@@ -4,7 +4,6 @@ module.exports = class ShuffleCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			description: 'Shuffles the currently Queue'
 		});
 	}

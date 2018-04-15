@@ -4,7 +4,6 @@ module.exports = class PlayCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			aliases: ['add'],
 			usage: '<song_or_playlist:str>',
 			description: 'Add a Song/Playlist/Livestream from Youtube/Soundcloud/Twitch in the queue.'
@@ -21,6 +20,7 @@ module.exports = class PlayCommand extends Command {
 				songs = await this.client.lavalink.load(queryString);
 			} else {
 				const searchResult = await this.client.lavalink.load(`ytsearch: ${queryString}`);
+				if (!searchResult) throw new Error('No Song with this name found!');
 				const menu = new RichMenu(
 					new this.client.methods.Embed()
 						.setAuthor(msg.member.displayName, msg.author.displayAvatarURL())

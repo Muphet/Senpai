@@ -4,7 +4,6 @@ const { get } = require('snekfetch');
 module.exports = class AnimeCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			aliases: ['animu'],
 			usage: '<anime_name:str>',
 			botPerms: ['EMBED_MESSAGE'],

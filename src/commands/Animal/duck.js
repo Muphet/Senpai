@@ -1,17 +1,16 @@
 const { Command } = require('klasa');
+const { get } = require('snekfetch');
 
-
-module.exports = class TrapCommand extends Command {
+module.exports = class DuckCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			botPerms: ['EMBED_MESSAGE'],
-			description: 'TRAPS ARE FUCKING GAY!'
+			description: 'Shows a random duck'
 		});
 	}
 
 	async run(msg) {
-		const { url } = await this.wolkeClient.getRandom({ type: this.name, hidden: false, nsfw: false });
+		const { body: { url } } = await get('https://api.random-d.uk/random');
 		return msg.send(new this.client.methods.Embed().setImage(url));
 	}
 };

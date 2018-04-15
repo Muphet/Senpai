@@ -7,7 +7,7 @@ module.exports = class SmugCommand extends Command {
 			cooldown: 5,
 			aliases: ['smirk'],
 			usage: '[member:member]',
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: '*Smirk*'
 		});
 	}

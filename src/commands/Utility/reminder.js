@@ -4,7 +4,6 @@ const { User } = require('discord.js');
 module.exports = class ReminderCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			usage: '<time:duration> <reason:str> [channel:channel]',
 			usageDelim: ' ',
 			quotedStringSupport: true,
@@ -20,7 +19,8 @@ module.exports = class ReminderCommand extends Command {
 				user: msg.author.id,
 				reason,
 				channel: channel.id,
-				isDM
+				isDM,
+				creationDate: Date.now()
 			},
 			catchUp: true
 		});

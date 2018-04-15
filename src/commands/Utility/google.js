@@ -3,7 +3,6 @@ const { Command } = require('klasa');
 module.exports = class GoogleCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			usage: '<searchQuery:str>',
 			botPerms: ['EMBED_MESSAGE'],
 			description: 'Searches for something on google'

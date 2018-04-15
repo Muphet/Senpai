@@ -97,8 +97,8 @@
 	   "type":"Folder",
 	   "mod":{
 		  "type":"role",
-		  "array":false,
-		  "default":null,
+		  "array":true,
+		  "default":[],
 		  "min":null,
 		  "max":null,
 		  "sql":"TEXT",
@@ -106,8 +106,8 @@
 	   },
 	   "music":{
 		  "type":"role",
-		  "array":false,
-		  "default":null,
+		  "array":true,
+		  "default":[],
 		  "min":null,
 		  "max":null,
 		  "sql":"TEXT",

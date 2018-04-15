@@ -5,7 +5,7 @@ module.exports = class BiteCommand extends Command {
 		super(...args, {
 			cooldown: 5,
 			usage: '[member:member]',
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'Bite someone or get bitten'
 		});
 	}

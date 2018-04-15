@@ -4,7 +4,6 @@ module.exports = class QueueCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			aliases: ['playlist'],
 			description: 'Shows the currently Song Queue'
 		});
@@ -19,7 +18,7 @@ module.exports = class QueueCommand extends Command {
 			new this.client.methods.Embed()
 				.setColor('RANDOM')
 				.setAuthor(msg.member.displayName, msg.author.displayAvatarURL())
-				.setTitle(`Music Queue for ${msg.guild.name}Queue length: ${time}`)
+				.setTitle(`Music Queue for ${msg.guild.name}`)
 				.addField(`Queue length`, time, true)
 				.addField('Playing?', playing ? 'Yes' : 'No', true)
 				.addField('Paused?', paused ? 'Yes' : 'No', true)

@@ -4,7 +4,6 @@ module.exports = class BanCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			aliases: ['banne', 'bean', 'hammer'],
 			permLevel: 5,
 			usage: '<member_to_ban:member> [reason:string]',

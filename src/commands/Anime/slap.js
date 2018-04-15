@@ -6,7 +6,7 @@ module.exports = class SlapCommand extends Command {
 		super(...args, {
 			cooldown: 5,
 			usage: '[member:member]',
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'Slap someone or get slaped'
 		});
 	}

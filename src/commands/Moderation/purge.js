@@ -4,7 +4,6 @@ module.exports = class PurgeCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			aliases: ['clear'],
 			permLevel: 4,
 			usage: '<amount:integer> [member:member]',

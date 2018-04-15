@@ -4,7 +4,6 @@ const { Command } = require('klasa');
 module.exports = class PingCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			aliases: ['pong'],
 			botPerms: ['EMBED_MESSAGE'],
 			description: 'Shows my current Ping to the Discord API'

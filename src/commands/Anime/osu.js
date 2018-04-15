@@ -6,13 +6,11 @@ const { APIError } = require(join(__dirname, '..', '..', 'util', 'CustomErrors.j
 module.exports = class OsuCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			subcommands: true,
-			cooldown: 5,
 			usage: '<username:str>',
 			botPerms: ['EMBED_MESSAGE'],
 			description: 'Shows information about an osu! player.'
 		});
-		this.osuClient = new Api(this.client.tokens.osuToken, {
+		this.osuClient = new Api(this.client.config.tokens.osu, {
 			notFoundAsError: true,
 			completeScores: false
 		});
@@ -27,7 +25,7 @@ module.exports = class OsuCommand extends Command {
 				.addField('Song Counts', `SS: ${counts.SS}\nS :${counts.S}\nA: ${counts.A}`, true)
 				.addField('Score Counts', `300: ${counts['300']}\n100: ${counts['100']}\n50: ${counts['50']}`, true)
 				.addField('Plays Total', counts.plays, true)
-				.addField('PP Score', pp.raw.toFixed(2), true)
+				.addField('PP Score', Number(pp.raw).toFixed(2), true)
 				.addField('Rank Global', pp.rank, true)
 				.addField('Rank Country', pp.countryRank, true)
 				.addField('Country', country, true)

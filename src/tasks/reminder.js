@@ -5,10 +5,18 @@ module.exports = class extends Task {
 		super(...args, { name: 'reminder', enabled: true });
 	}
 
-	run({ channel, user, reason, isDM }) {
+	run({ channel, user, reason, isDM, creationDate }) {
 		let _channel;
 		if (isDM) _channel = this.client.users.get(channel);
 		else _channel = this.client.channels.get(channel);
-		return _channel.send(`<@${user}> You wanted me to remind you: ${reason}`);
+		return _channel.send(
+			this.client.users.get(user).toString(),
+			new this.client.methods.Embed()
+				.setTitle('You wanted to be reminded of:')
+				.setDescription(reason)
+				.setFooter('Reminder created on')
+				.setTimestamp(new Date(creationDate))
+				.setColor('#ff3300')
+		);
 	}
 };

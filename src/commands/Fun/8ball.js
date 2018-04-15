@@ -3,7 +3,6 @@ const { Command } = require('klasa');
 module.exports = class EightBallCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			usage: '<question:str>',
 			description: 'Answers a yes/no question'
 		});

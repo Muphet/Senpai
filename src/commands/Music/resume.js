@@ -4,7 +4,6 @@ module.exports = class ResumeCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			description: 'pause the current playing song.'
 		});
 	}

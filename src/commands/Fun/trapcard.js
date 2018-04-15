@@ -7,7 +7,6 @@ const Canvas = require('canvas');
 module.exports = class TrapCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			cooldown: 5,
 			usage: '[user:user]',
 			botPerms: ['ATTACH_FILES'],
 			description: 'Turn the tables with your ultimate Yu-Gi-Oh trap card!'

@@ -4,7 +4,6 @@ module.exports = class LoopCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			description: 'Starts looping the current queue.'
 		});
 	}

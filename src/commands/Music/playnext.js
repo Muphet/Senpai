@@ -4,7 +4,6 @@ module.exports = class PlayNextCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			cooldown: 5,
 			usage: '<song_or_playlist:str>',
 			description: 'Add a Song/Playlist/Livestream from Youtube/Soundcloud/Twitch on the next playing position in the queue.'
 		});

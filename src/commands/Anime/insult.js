@@ -6,7 +6,7 @@ module.exports = class InsultCommand extends Command {
 		super(...args, {
 			cooldown: 5,
 			usage: '[member:member]',
-			botPerms: ['ATTACH_FILES'],
+			botPerms: ['EMBED_MESSAGE'],
 			description: 'Insult someone or get insulted'
 		});
 	}
