@@ -114,12 +114,27 @@
 		  "configurable":true
 	   }
 	},
+	"storage": {
+		"type":"Folder",
+		"cases":{
+			"type":"case",
+			"array":true,
+			"default":[],
+			"sql":"TEXT",
+			"configurable":true
+		 },
+		 "starboard":{
+			"type":"starmessage",
+			"array":true,
+			"default":[],
+			"sql":"TEXT",
+			"configurable":true
+		 }
+	},
 	"disabledCommands":{
 	   "type":"command",
 	   "array":true,
-	   "default":[
- 
-	   ],
+	   "default":[],
 	   "min":null,
 	   "max":null,
 	   "sql":"TEXT",

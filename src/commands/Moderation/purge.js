@@ -5,7 +5,7 @@ module.exports = class PurgeCommand extends Command {
 		super(...args, {
 			runIn: ['text'],
 			aliases: ['clear'],
-			permLevel: 4,
+			permLevel: 3,
 			usage: '<amount:integer> [member:member]',
 			usageDelim: ' ',
 			botPerms: ['MANAGE_MESSAGES'],
@@ -22,7 +22,7 @@ module.exports = class PurgeCommand extends Command {
 			} else {
 				deleted = await msg.channel.bulkDelete(amount);
 			}
-			const message = await msg.send(`i've deleted ${deleted.size} Messages ${member ? `from ${member.displayName}` : ``}`);
+			const message = await msg.send(`i've deleted ${deleted.size} Messages ${member ? `from ${member.displayName}` : ''}`);
 			await message.delete(10000);
 		} catch (error) {
 			if (error.message === 'Unknown Message') throw error;

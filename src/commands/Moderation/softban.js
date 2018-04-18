@@ -4,7 +4,7 @@ module.exports = class SoftBanCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			aliases: ['banne', 'bean', 'hammer'],
+			aliases: ['softbean'],
 			permLevel: 5,
 			usage: '<member_to_ban:member> [reason:string]',
 			usageDelim: ' ',

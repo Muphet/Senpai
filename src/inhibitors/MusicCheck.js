@@ -14,6 +14,10 @@ module.exports = class extends Inhibitor {
 		if (cmd.category !== 'Music') return;
 		if (!msg.guild) return;
 		if (!msg.member) await msg.guild.members.fetch(msg.author);
+		if (msg.guild.configs.music.limited) {
+			const hasPerms = await msg.hasAtLeastPermissionLevel(6);
+			if (!hasPerms) throw 'On this server Music features are limited to the DJ role, because of that you aren\'t allowed to use this';
+		}
 		const { voiceChannel } = msg.member;
 		const { queue } = msg.guild.music;
 		let { me } = msg.guild;

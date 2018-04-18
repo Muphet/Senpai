@@ -1,6 +1,6 @@
 const { Command } = require('klasa');
 
-module.exports = class MusiclogCommand extends Command {
+module.exports = class MusicLogCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			permLevel: 6,

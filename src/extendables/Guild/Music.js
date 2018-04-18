@@ -1,6 +1,6 @@
 const { Extendable } = require('klasa');
 const { join } = require('path');
-const Music = require(join(__dirname, '..', 'structures', 'Music.js'));
+const Music = require(join(__dirname, '..', '..', 'structures', 'Music.js'));
 
 module.exports = class extends Extendable {
 	constructor(...args) {

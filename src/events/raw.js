@@ -8,10 +8,7 @@ module.exports = class RawEvent extends Event {
 			event: 'raw',
 			once: false
 		});
-		this.methods = {
-			MESSAGE_REACTION_ADD: 'messageReactionAdd',
-			MESSAGE_REACTION_REMOVE: 'messageReactionRemove'
-		};
+		this.methods = { MESSAGE_REACTION_ADD: 'messageReactionAdd' };
 		this.keys = Object.keys(this.methods);
 	}
 
@@ -29,23 +26,8 @@ module.exports = class RawEvent extends Event {
 
 		const user = client.users.get(data.user_id);
 		const message = await channel.messages.fetch(data.message_id);
-		const emojiKey = data.emoji.id ? data.emoji : data.emoji.name;
-		const reaction = message.reactions.get(emojiKey);
+		const reaction = message.reactions.get(data.emoji.id);
 
 		client.emit('messageReactionAdd', reaction, user);
-	}
-
-	async messageReactionRemove(data) {
-		const { client } = this;
-		const channel = client.channels.get(data.channel_id);
-
-		if (channel.messages.has(data.message_id)) return;
-
-		const user = client.users.get(data.user_id);
-		const message = await channel.messages.fetch(data.message_id);
-		const emojiKey = data.emoji.id ? data.emoji : data.emoji.name;
-		const reaction = message.reactions.get(emojiKey);
-
-		client.emit('messageReactionRemove', reaction, user);
 	}
 };

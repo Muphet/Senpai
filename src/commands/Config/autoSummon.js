@@ -17,6 +17,7 @@ module.exports = class AutoSummonCommand extends Command {
 			return false;
 		});
 		if (!channel) throw new UsageError('No Channel with this ID or Name found!');
+		if (channel.type !== 'voice') throw new UsageError('This Channel is not a voice channel!');
 		await msg.guild.configs.update('channels.music', channel, { avoidUnconfigurable: true, action: 'add' });
 		return msg.send(`AutoSummon channel successful updated to ${channel.name}`);
 	}

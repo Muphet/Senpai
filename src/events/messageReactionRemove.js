@@ -12,21 +12,22 @@ module.exports = class MessageReactionRemoveEvent extends Event {
 
 	async run(messageReaction, user) {
 		let { message, count: reactionCount } = messageReaction;
-		const { guild } = message;
+		const { guild, id } = message;
 		if (user.bot || messageReaction.emoji.name !== '⭐' || message.author.id === user.id || !guild) return;
 		let { starboard } = guild.configs.channels;
 		starboard = guild.channels.get(starboard);
 		const { count } = guild.configs.starboard;
 		await messageReaction.users.fetch();
 		if (messageReaction.users.has(message.author.id)) reactionCount -= 1;
-		const entry = this.client.gateways.starboard.cache.get(message.id);
+		const starArray = guild.configs.storage.starboard;
+		let entry = starArray.find(obj => obj.originalMessage === id);
 		if (!entry) return;
 		if (reactionCount < count) {
 			await this.deleteStarboardMessage({ messageID: entry.sentMessage, starboard });
-			await this.client.gateways.starboard.deleteEntry(entry.id);
+			await guild.configs.update('storage.starboard', entry, { action: 'delete' });
 		} else {
 			await this.client.events.get('messageReactionAdd').editStarboardMessage({ reactionCount, starboard, messageID: entry.sentMessage });
-			await entry.update({ guild: message.guild, starCount: reactionCount });
+			await guild.configs.update('storage.starboard', entry);
 		}
 	}
 

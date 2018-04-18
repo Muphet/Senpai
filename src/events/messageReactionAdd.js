@@ -12,14 +12,15 @@ module.exports = class MessageReactionAddEvent extends Event {
 
 	async run(messageReaction, user) {
 		let { message, count: reactionCount } = messageReaction;
-		const { guild, author } = message;
+		const { guild, author, id } = message;
 		if (user.bot || messageReaction.emoji.name !== '⭐' || author.id === user.id || !guild) return;
 		let { starboard } = guild.configs.channels;
 		const { count } = guild.configs.starboard;
 		if (!starboard) return;
 		if (message.channel.id === starboard) return;
 		starboard = guild.channels.get(starboard);
-		let entry = this.client.gateways.starboard.cache.get(message.id);
+		const starArray = guild.configs.storage.starboard;
+		let entry = starArray.find(obj => obj.originalMessage === id);
 		await messageReaction.users.fetch();
 		if (messageReaction.users.has(message.author.id)) reactionCount -= 1;
 		if (reactionCount < count) return;
@@ -29,14 +30,14 @@ module.exports = class MessageReactionAddEvent extends Event {
 		} else {
 			sentMessage = await this.createStarboardMessage({ message, reactionCount, starboard });
 		}
-		entry = entry || this.client.gateways.starboard.insertEntry(message.id);
-		await entry.update({ guild: message.guild, starCount: reactionCount, author, sentMessage: sentMessage.id });
+		entry = entry || { starCount: reactionCount, originalMessage: id, sentMessage: sentMessage.id };
+		await guild.configs.update('storage.starboard', entry, { action: 'add' });
 	}
 
 	createStarboardMessage({ message, reactionCount, starboard }) {
 		const embed = new this.client.methods.Embed()
 			.setAuthor(`${message.author.tag}`, message.author.displayAvatarURL())
-			.setThumbnail(message.author.displayAvatarURL)
+			.setThumbnail(message.author.displayAvatarURL())
 			.addField(`ID:`, `${message.id}`, true)
 			.addField('Channel', `${message.channel}`, true)
 			.setTimestamp()
