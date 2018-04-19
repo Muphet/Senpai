@@ -1,6 +1,6 @@
 const { Event } = require('klasa');
 const { join } = require('path');
-const { APIError, MusicError, PermissionError, UsageError } = require(join(__dirname, '..', 'util', 'CustomErrors.js'));
+const { APIError, MusicError, PermissionError, UsageError, EconomyError } = require(join(__dirname, '..', 'util', 'CustomErrors.js'));
 
 module.exports = class extends Event {
 	constructor(...args) {
@@ -10,7 +10,7 @@ module.exports = class extends Event {
 			event: 'commandError',
 			once: false
 		});
-		this.errorClasses = [APIError, MusicError, PermissionError, UsageError];
+		this.errorClasses = [APIError, MusicError, PermissionError, UsageError, EconomyError];
 	}
 
 	run(msg, command, params, error) {

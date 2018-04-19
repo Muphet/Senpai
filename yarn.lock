@@ -3,12 +3,12 @@
 
 
 "@types/node@*":
-  version "9.6.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.5.tgz#ee700810fdf49ac1c399fc5980b7559b3e5a381d"
+  version "9.6.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.6.tgz#439b91f9caf3983cad2eef1e11f6bedcbf9431d2"
 
 "@types/node@^8.0.4":
-  version "8.10.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.8.tgz#794cba23cc9f8d9715f6543fa8827433b5f5cd3b"
+  version "8.10.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.9.tgz#b507a74a7d3eddc74a17dc35fd40d8f45dde0d6c"
 
 "@types/snekfetch@^3.6.0":
   version "3.6.0"
@@ -356,7 +356,7 @@ detect-libc@^1.0.2:
 
 discord.js@discordjs/discord.js:
   version "12.0.0-dev"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/2dd7fd2739fb5c68832b7eafeab5a9daa2f5b331"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/8d065fa043c3e855c3f6a296dc76d7da0846db18"
   dependencies:
     pako "^1.0.0"
     prism-media "^0.2.0"
@@ -810,9 +810,9 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-klasa@dirigeants/klasa#SGv2.1.1:
+klasa@dirigeants/klasa:
   version "0.5.0-dev"
-  resolved "https://codeload.github.com/dirigeants/klasa/tar.gz/7f498e06e54646da3c45eeaf2adb97f8ffa8a6b8"
+  resolved "https://codeload.github.com/dirigeants/klasa/tar.gz/126ccfaa1444c19642ffd6ada535a1ca9c8b43f8"
   dependencies:
     fs-nextra "^0.3.2"
 
@@ -1251,6 +1251,10 @@ slice-ansi@1.0.0:
   resolved "https://registry.yarnpkg.com/slice-ansi/-/slice-ansi-1.0.0.tgz#044f1a49d8842ff307aad6b505ed178bd950134d"
   dependencies:
     is-fullwidth-code-point "^2.0.0"
+
+slot-machine@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/slot-machine/-/slot-machine-2.1.0.tgz#e9cb01312f5e4f4b8d1c5301640df4e31b170454"
 
 snekfetch@3.6.4, snekfetch@^3.0.1, snekfetch@^3.6.0, snekfetch@^3.6.4:
   version "3.6.4"

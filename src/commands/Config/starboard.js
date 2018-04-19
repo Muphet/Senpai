@@ -3,6 +3,7 @@ const { Command } = require('klasa');
 module.exports = class StarboardCommand extends Command {
 	constructor(...args) {
 		super(...args, {
+			runIn: ['text'],
 			permLevel: 6,
 			usage: '<starboard:channel>',
 			description: 'Changes the starboard channel set for this server'

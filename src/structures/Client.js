@@ -70,8 +70,5 @@ module.exports = class SenpaiClient extends Client {
 		};
 		this.customPieceStore = new CustomPieceStore(this);
 		this.registerStore(this.customPieceStore);
-		this.registerPiece('BotListHandler', this.customPieceStore);
-		this.registerPiece('CacheSync', this.customPieceStore);
-		this.registerPiece('Lavalink', this.customPieceStore);
 	}
 };

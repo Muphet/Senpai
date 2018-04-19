@@ -14,4 +14,8 @@ class UsageError extends Error {
 
 }
 
-module.exports = { MusicError, APIError, UsageError, PermissionError };
+class EconomyError extends Error {
+
+}
+
+module.exports = { MusicError, APIError, UsageError, PermissionError, EconomyError };

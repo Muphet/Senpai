@@ -91,6 +91,15 @@
 		"max":null,
 		"sql":"TEXT",
 		"configurable":true
+	 },
+	 "welcome":{
+		"type":"textchannel",
+		"array":false,
+		"default":null,
+		"min":null,
+		"max":null,
+		"sql":"TEXT",
+		"configurable":true 
 	 }
 	},
 	"roles":{

@@ -6,7 +6,7 @@ module.exports = class RemoveSongCommand extends Command {
 			runIn: ['text'],
 			usage: '<SongIndex:int>',
 			aliases: ['deletesong'],
-			description: 'Deletes are song from the queue.'
+			description: 'Deletes a song from the queue.'
 		});
 	}
 

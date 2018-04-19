@@ -4,7 +4,7 @@ module.exports = class ClearQueueCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			description: 'Clears the whole queue beside the currently playing one'
+			description: 'Clears the whole queue beside the currently playing song'
 		});
 	}
 

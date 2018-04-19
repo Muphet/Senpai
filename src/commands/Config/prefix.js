@@ -3,6 +3,7 @@ const { Command } = require('klasa');
 module.exports = class PrefixCommand extends Command {
 	constructor(...args) {
 		super(...args, {
+			runIn: ['text'],
 			permLevel: 6,
 			usage: '<prefix:string{1,5}>',
 			description: 'Changes the prefix set for this server'

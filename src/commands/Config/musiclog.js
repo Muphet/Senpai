@@ -3,6 +3,7 @@ const { Command } = require('klasa');
 module.exports = class MusicLogCommand extends Command {
 	constructor(...args) {
 		super(...args, {
+			runIn: ['text'],
 			permLevel: 6,
 			usage: '<musiclog:channel>',
 			description: 'Changes the musiclog channel set for this server'
