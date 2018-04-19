@@ -5,8 +5,8 @@ module.exports = class SkipCommand extends Command {
 		super(...args, {
 			runIn: ['text'],
 			aliases: ['next'],
-			description: 'Skip the currently playing song',
-			usage: '[amount_to_skip:number]'
+			description: 'Skip 1 or more songs',
+			usage: '[amount_to_skip:int{0}]'
 		});
 	}
 
