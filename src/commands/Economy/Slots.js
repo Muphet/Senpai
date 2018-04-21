@@ -9,10 +9,6 @@ module.exports = class SlotsCommand extends Command {
 			description: 'play slots with economy!',
 			usage: '<amount:int{0}|amount:amount>'
 		});
-		this.createCustomResolver('amount', (arg, possible, msg) => {
-			if (['all', 'everything', '-a'].includes(arg)) return msg.author.configs.currency;
-			throw new Error('amount couldn\'t get resolved!');
-		});
 		this.slotSymbols = [
 			new SlotSymbol('money', {
 				display: '💰',

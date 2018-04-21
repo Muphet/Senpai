@@ -356,7 +356,7 @@ detect-libc@^1.0.2:
 
 discord.js@discordjs/discord.js:
   version "12.0.0-dev"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/8d065fa043c3e855c3f6a296dc76d7da0846db18"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/b8a9a76cf6d9a1ac59b95913ed9bc7dc7d0f61da"
   dependencies:
     pako "^1.0.0"
     prism-media "^0.2.0"
@@ -556,8 +556,8 @@ fs-minipass@^1.2.5:
     minipass "^2.2.1"
 
 fs-nextra@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/fs-nextra/-/fs-nextra-0.3.2.tgz#a19baecc56e0c74b5740d311fc6f70b012bc4b14"
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/fs-nextra/-/fs-nextra-0.3.3.tgz#b4744adb646a25cb744561a973cff132bf95263d"
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -812,7 +812,7 @@ jsprim@^1.2.2:
 
 klasa@dirigeants/klasa:
   version "0.5.0-dev"
-  resolved "https://codeload.github.com/dirigeants/klasa/tar.gz/126ccfaa1444c19642ffd6ada535a1ca9c8b43f8"
+  resolved "https://codeload.github.com/dirigeants/klasa/tar.gz/d7d93552439561f42f2ea7868b634137ef065414"
   dependencies:
     fs-nextra "^0.3.2"
 

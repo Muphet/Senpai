@@ -9,10 +9,6 @@ module.exports = class CoinflipCommand extends Command {
 			aliases: ['bet'],
 			description: 'a 50/50 chance to double your bet, go big or go home!'
 		});
-		this.createCustomResolver('amount', (arg, possible, msg) => {
-			if (['all', 'everything', '-a'].includes(arg)) return msg.author.configs.currency;
-			throw new Error('amount couldn\'t get resolved!');
-		});
 	}
 
 	async run(msg, [amount]) {

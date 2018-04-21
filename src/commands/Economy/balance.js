@@ -10,8 +10,8 @@ module.exports = class BalanceCommand extends Command {
 	}
 
 	run(msg, [user = msg.author]) {
-		const daily = new Date().getTime() - new Date(msg.author.configs.votedDate || Date.now()).getTime();
+		const daily = new Date().getTime() - new Date(user.configs.votedDate || Date.now()).getTime();
 		const diff = 86400000 - daily;
-		return msg.send(`Your current balance is ${user.configs.currency}¥, ${msg.author.id === user.id ? `You can use daily command ${diff > 0 ? `in ${this.format(diff / 1000)}` : '**now**'}` : ''}`);
+		return msg.send(`${user.id === msg.author.id ? 'Your' : `${user.username}'s`} current balance is ${user.configs.currency}¥, ${msg.author.id === user.id ? `You can use daily command ${diff < 86400000 ? `in ${this.format(diff / 1000)}` : '**now**'}` : ''}`);
 	}
 };
