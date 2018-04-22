@@ -5,7 +5,7 @@ const { bottoken } = process.env;
 const wait = promisify(setTimeout);
 const Manager = new ShardingManager(join(__dirname, 'main.js'),
 	{
-		totalShards: 'auto',
+		totalShards: 8,
 		token: bottoken
 	});
 // Spawn shards
