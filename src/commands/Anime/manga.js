@@ -23,7 +23,7 @@ module.exports = class MangaCommand extends Command {
 		for (let index = 0; index < 5; index++) {
 			menu.addOption(this._createTitle(index, data), data[index].attributes.subtype);
 		}
-		const collector = await menu.run(await msg.send('*Fetching data from the Kitsu API*'));
+		const collector = await menu.run(await msg.send('*Fetching data from the Kitsu API*'), { filter: (reaction, user) => user.id === msg.author.id });
 
 		const choice = await collector.selection;
 		if (choice === null) {

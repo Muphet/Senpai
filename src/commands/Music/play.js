@@ -33,7 +33,7 @@ module.exports = class PlayCommand extends Command {
 					menu.addOption(`${song.info.title} - [${this.format(song.info.length / 1000)}]`, `by ${song.info.author}`);
 				}
 
-				const collector = await menu.run(await msg.send('Loading Songs for this search...'));
+				const collector = await menu.run(await msg.send('Loading Songs for this search...'), { filter: (reaction, user) => user.id === msg.author.id });
 
 				const choice = await collector.selection;
 				if (choice === null) return collector.message.delete();

@@ -28,7 +28,7 @@ module.exports = class UrbanCommand extends Command {
 					.addField('Votes', `${responses[i].thumbsUp}👍 | ${responses[i].thumbsDown}👎`));
 			}
 
-			return display.run(await msg.send('Getting Urban definitions...'));
+			return display.run(await msg.send('Getting Urban definitions...'), { filter: (reaction, user) => user.id === msg.author.id });
 		} catch (error) {
 			return msg.send('Sorry but i didn\'t find this phrase on the urban dictonary!');
 		}
