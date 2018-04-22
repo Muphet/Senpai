@@ -10,7 +10,7 @@ module.exports = class PlayNextCommand extends Command {
 	}
 
 	async run(msg, [...query]) {
-		if (!msg.guild.music.channelID) msg.guild.music.channelID = msg.channel.id;
+		if (!msg.guild.music.channel) msg.guild.music.channelID = msg.guild.configs.musiclog || msg.channel.id;
 		await msg.send('*adding your Song/Playlist to the queue....*');
 		const player = this.client.lavalink.players.get(msg.guild.id);
 		if (!player) return;

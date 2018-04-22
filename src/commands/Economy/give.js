@@ -5,7 +5,7 @@ const { UsageError, EconomyError } = require(join(__dirname, '..', '..', 'util',
 module.exports = class GiveCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			usage: '<user:user> <amount:number{0}|amount:amount>',
+			usage: '<user:user> <amount:int{0}|amount:amount>',
 			usageDelim: ' ',
 			description: 'give another user some of your money'
 		});

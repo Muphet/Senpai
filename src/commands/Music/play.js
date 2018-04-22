@@ -11,7 +11,7 @@ module.exports = class PlayCommand extends Command {
 	}
 
 	async run(msg, [...query]) {
-		if (!msg.guild.music.channel) msg.guild.music.channelID = msg.channel.id;
+		if (!msg.guild.music.channel) msg.guild.music.channelID = msg.guild.configs.musiclog || msg.channel.id;
 		await msg.send('*adding your Song/Playlist to the queue....*');
 		try {
 			let songs = [];

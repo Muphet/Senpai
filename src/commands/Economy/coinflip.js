@@ -5,7 +5,7 @@ const { EconomyError } = require(join(__dirname, '..', '..', 'util', 'CustomErro
 module.exports = class CoinflipCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			usage: '<amount:number{0}|amount:amount>',
+			usage: '<amount:int{0}|amount:amount>',
 			aliases: ['bet'],
 			description: 'a 50/50 chance to double your bet, go big or go home!'
 		});
