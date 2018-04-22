@@ -26,7 +26,8 @@ module.exports = class RawEvent extends Event {
 
 		const user = client.users.get(data.user_id);
 		const message = await channel.messages.fetch(data.message_id);
-		const reaction = message.reactions.get(data.emoji.id);
+
+		const reaction = message.reactions.get(data.emoji.id || data.emoji.name);
 
 		client.emit('messageReactionAdd', reaction, user);
 	}
