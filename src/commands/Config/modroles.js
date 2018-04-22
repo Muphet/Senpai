@@ -10,13 +10,13 @@ module.exports = class ModRolesCommand extends Command {
 		});
 	}
 
-	async run(msg, [musicrole]) {
-		if (msg.guild.configs.roles.music.includes(musicrole.id)) {
-			await msg.guild.configs.update('roles.music', musicrole, { action: 'delete' });
-			return msg.send(`**${musicrole.name}** Succesfully removed from the Music Roles`);
+	async run(msg, [modrole]) {
+		if (msg.guild.configs.roles.mod.includes(modrole.id)) {
+			await msg.guild.configs.update('roles.mod', modrole, { action: 'delete' });
+			return msg.send(`**${modrole.name}** Succesfully removed from the Moderation Roles`);
 		} else {
-			await msg.guild.configs.update('roles.music', musicrole, { action: 'add' });
-			return msg.send(`**${musicrole.name}** Succesfully added to Music Roles`);
+			await msg.guild.configs.update('roles.mod', modrole, { action: 'add' });
+			return msg.send(`**${modrole.name}** Succesfully added to Moderation Roles`);
 		}
 	}
 };

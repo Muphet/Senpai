@@ -10,8 +10,8 @@ module.exports = class StarcountCommand extends Command {
 		});
 	}
 
-	async run(msg, [starboard]) {
-		await msg.guild.configs.update('channels.starboard', starboard);
-		return msg.send(`Starboard channel successful updated to ${starboard}`);
+	async run(msg, [stars]) {
+		await msg.guild.configs.update('starboard.count', stars);
+		return msg.send(`Starboard count successfully updated to ${stars}`);
 	}
 };
