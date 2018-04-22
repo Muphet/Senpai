@@ -11,6 +11,6 @@ module.exports = class DebugEvent extends Event {
 	}
 
 	run(message) {
-		this.client.console.debug(message);
+		return this.client.console.debug(message);
 	}
 };

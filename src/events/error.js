@@ -11,6 +11,6 @@ module.exports = class ErrorEvent extends Event {
 	}
 
 	run(err) {
-		this.client.console.error(err);
+		return this.client.console.error(err);
 	}
 };

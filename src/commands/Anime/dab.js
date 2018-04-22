@@ -1,7 +1,7 @@
 const { Command } = require('klasa');
 
 
-module.exports = class extends Command {
+module.exports = class DabCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			cooldown: 5,
