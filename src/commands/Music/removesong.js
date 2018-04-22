@@ -4,7 +4,7 @@ module.exports = class RemoveSongCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			usage: '<SongIndex:integer{0}>',
+			usage: '<SongIndex:number{0}>',
 			aliases: ['deletesong'],
 			description: 'Deletes a song from the queue.'
 		});

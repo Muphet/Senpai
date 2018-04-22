@@ -5,7 +5,7 @@ module.exports = class StarcountCommand extends Command {
 		super(...args, {
 			runIn: ['text'],
 			permLevel: 6,
-			usage: '<required_stars:integer{0}>',
+			usage: '<required_stars:number{0}>',
 			description: 'Changes the starcount required for the starboard on this server'
 		});
 	}

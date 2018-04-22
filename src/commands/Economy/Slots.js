@@ -42,6 +42,7 @@ module.exports = class SlotsCommand extends Command {
 
 	async run(msg, [amount]) {
 		let { currency } = msg.author.configs;
+		if (amount <= 0) throw new EconomyError('Value cant be under or equal to 0');
 		if (amount > msg.author.configs.economy) throw new EconomyError('You dont have that much money!');
 		const result = this._runSlots();
 		const resultString = result.visualize();

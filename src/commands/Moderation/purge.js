@@ -6,7 +6,7 @@ module.exports = class PurgeCommand extends Command {
 			runIn: ['text'],
 			aliases: ['clear'],
 			permLevel: 3,
-			usage: '<amount:integer> [member:member]',
+			usage: '<amount:number> [member:member]',
 			usageDelim: ' ',
 			botPerms: ['MANAGE_MESSAGES'],
 			description: 'Clears and amount of messages (max 100!) if a member is provided only clears from this person'
