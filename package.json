@@ -37,7 +37,8 @@
     "slot-machine": "^2.1.0",
     "snekfetch": "3.6.4",
     "weather-js": "^2.0.0",
-    "weebts": "^1.0.4"
+    "weebts": "^1.0.4",
+    "zlib-sync": "^0.1.4"
   },
   "private": true
 }
