@@ -14,7 +14,7 @@ module.exports = class CoinflipCommand extends Command {
 	async run(msg, [amount]) {
 		let { currency } = msg.author.configs;
 		if (amount <= 0) throw new EconomyError('Value cant be under or equal to 0');
-		if (amount > msg.author.configs.currendy) throw new EconomyError('amount can not be more than your currency.');
+		if (amount > msg.author.configs.currency) throw new EconomyError('amount can not be more than your currency.');
 		const random = Math.random();
 		let message;
 		if (random > 0.5) {
