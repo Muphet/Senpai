@@ -4,7 +4,6 @@ module.exports = class PingCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
-			aliases: ['pong'],
 			usage: '<message:str> [channel:channel]',
 			usageDelim: ' ',
 			botPerms: ['EMBED_MESSAGE'],
