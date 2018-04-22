@@ -16,7 +16,7 @@ module.exports = class GiveCommand extends Command {
 		if (msg.author.configs.currency < amount) throw new UsageError('You dont have that much money!');
 		if (msg.author.id === user.id) throw new UsageError('You cannot give yourself money!');
 		await msg.author.configs.update('currency', msg.author.configs.currency - amount);
-		await user.configs.update('currency', msg.author.configs.currency + amount);
+		await user.configs.update('currency', user.configs.currency + amount);
 		return msg.send(`You successfully gave ${user.username} ${amount}¥`);
 	}
 };
