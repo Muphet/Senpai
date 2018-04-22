@@ -12,6 +12,6 @@ module.exports = class ReadyEvent extends Event {
 
 	run() {
 		this.client.console.debug('Connected/Reconnected to the Discord API');
-		return this.client.user.setActivity(`${this.client.config.constants.prefix}help || Version: ${this.client.version} || ${this.client.guilds.size} Servers`);
+		return this.client.user.setActivity(`${this.client.config.constants.prefix}help || Version: ${this.client.version} || ${this.client.guilds.size} Servers on this Shard`);
 	}
 };
