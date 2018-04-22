@@ -4,6 +4,7 @@ module.exports = class extends Command {
 	constructor(...args) {
 		super(...args, {
 			guarded: true,
+			permLevel: 10,
 			description: msg => msg.language.get('COMMAND_CONF_USER_DESCRIPTION'),
 			subcommands: true,
 			usage: '<set|show|remove|reset> (key:key) (value:value) [...]',
