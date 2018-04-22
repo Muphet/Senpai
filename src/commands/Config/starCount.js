@@ -11,7 +11,7 @@ module.exports = class StarcountCommand extends Command {
 	}
 
 	async run(msg, [starboard]) {
-		await msg.guild.configs.update('channels.starboard', starboard, { avoidUnconfigurable: true, action: 'add' });
+		await msg.guild.configs.update('channels.starboard', starboard);
 		return msg.send(`Starboard channel successful updated to ${starboard}`);
 	}
 };

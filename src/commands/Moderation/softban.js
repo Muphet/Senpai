@@ -19,8 +19,8 @@ module.exports = class SoftBanCommand extends Command {
 			reason: reason.join(' '),
 			days: 7
 		});
-		const newMessage = await message.edit(`successfully banned ${member.user.tag} Awaiting unban ..`);
-		const unbanned = await msg.guild.members.unban(banned.user, reason);
+		const newMessage = await message.edit(`successfully banned ${member.user.tag} Awaiting unban ...`);
+		const unbanned = await msg.guild.members.unban(banned, reason.join(' '));
 		await newMessage.edit(`successfully softbanned ${unbanned.tag}`);
 	}
 };

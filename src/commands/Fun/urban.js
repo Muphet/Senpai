@@ -5,7 +5,7 @@ module.exports = class UrbanCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			usage: '<phrase:str>',
-			botPerms: ['EMBED_MESSAGE'],
+			botPerms: ['EMBED_MESSAGE', 'MANAGE_MESSAGES'],
 			description: 'Search for a word on the urban dictonary'
 		});
 	}
@@ -25,7 +25,7 @@ module.exports = class UrbanCommand extends Command {
 					.setTitle(responses[i].word)
 					.setDescription(responses[i].definition)
 					.addField('Example:', responses[i].example)
-					.setFooter(`${responses[i].thumbsUp}👍 | ${responses[i].thumbsDown}👎`));
+					.addField('Votes', `${responses[i].thumbsUp}👍 | ${responses[i].thumbsDown}👎`));
 			}
 
 			return display.run(await msg.send('Getting Urban definitions...'));

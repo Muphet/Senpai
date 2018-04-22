@@ -20,7 +20,8 @@ module.exports = class ReminderCommand extends Command {
 				reason,
 				channel: channel.id,
 				isDM,
-				creationDate: Date.now()
+				creationDate: Date.now(),
+				origin: `${msg.guild.name}/${msg.channel.name}`
 			},
 			catchUp: true
 		});

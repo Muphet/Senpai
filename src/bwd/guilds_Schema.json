@@ -38,7 +38,7 @@
 	   "joinMessage":{
 		  "type":"string",
 		  "array":false,
-		  "default":null,
+		  "default":"Please welcome our new user {user} to {servername}",
 		  "min":null,
 		  "max":null,
 		  "sql":"TEXT",
@@ -47,7 +47,7 @@
 	   "leaveMessage":{
 		  "type":"string",
 		  "array":false,
-		  "default":null,
+		  "default":"{username} just left, press f to pay respect",
 		  "min":null,
 		  "max":null,
 		  "sql":"TEXT",

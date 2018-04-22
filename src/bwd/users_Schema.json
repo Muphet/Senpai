@@ -17,5 +17,14 @@
 		"max":null,
 		"sql":"INTEGER DEFAULT null",
 		"configurable":true
+	},
+	"votedDateDBL":{
+		"type":"integer",
+		"array":false,
+		"default": null,
+		"min":null,
+		"max":null,
+		"sql":"INTEGER DEFAULT null",
+		"configurable":true
 	}
 }
