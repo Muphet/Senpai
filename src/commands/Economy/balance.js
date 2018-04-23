@@ -3,7 +3,7 @@ const { Command } = require('klasa');
 module.exports = class BalanceCommand extends Command {
 	constructor(...args) {
 		super(...args, {
-			aliases: ['money'],
+			aliases: ['money', 'cash', 'bal'],
 			usage: '[user:user]',
 			description: 'Shows your current money or of someone else!'
 		});

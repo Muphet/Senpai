@@ -6,7 +6,7 @@ module.exports = class CoinflipCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			usage: '<amount:int{0}|amount:amount>',
-			aliases: ['bet'],
+			aliases: ['bet', 'coin', 'flip'],
 			description: 'a 50/50 chance to double your bet, go big or go home!'
 		});
 	}
