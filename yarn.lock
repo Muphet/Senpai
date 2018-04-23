@@ -812,7 +812,7 @@ jsprim@^1.2.2:
 
 klasa@dirigeants/klasa:
   version "0.5.0-dev"
-  resolved "https://codeload.github.com/dirigeants/klasa/tar.gz/d7d93552439561f42f2ea7868b634137ef065414"
+  resolved "https://codeload.github.com/dirigeants/klasa/tar.gz/9531d63ac39b8ac8eb830300b856576bc2324f7b"
   dependencies:
     fs-nextra "^0.3.2"
 
