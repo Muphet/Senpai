@@ -10,11 +10,10 @@ module.exports = class ConfigUpdateEntryEvent extends Event {
 				this.console.debug('started broadcastEval');
 				if (this.shard.id !== ${this.client.shard.id}) {
 					this.console.debug('started if-statement inside broadcastEval');
-					const user = this.users.get('${configs.id}');
-					if (user) {
+					this.users.fetch('${configs.id}').then(user => {
 						user.configs.sync();
 						this.console.debug('calling sync method on user');
-					}
+					})
 				}
 			`);
 		} else if (configs.gateway.type === 'clientStorage') {

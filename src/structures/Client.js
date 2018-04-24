@@ -43,7 +43,7 @@ module.exports = class SenpaiClient extends Client {
 				`User Count:            ${readyClient.users.size}`,
 				'-----------------------------------------------------------------------------'
 			],
-			presence: { activity: { name: 'My Dev', type: 'WATCHING' } }
+			presence: { activity: { name: 'Loading...', type: 'PLAYING' } }
 		});
 		this.version = version;
 		this.config = {
