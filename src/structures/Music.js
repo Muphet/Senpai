@@ -117,22 +117,17 @@ module.exports = class Music {
 			randomIndex,
 			temporaryValue;
 
-		// While there remain elements to shuffle...
 		while (currentIndex !== 0) {
-			// Pick a remaining element...
 			randomIndex = Math.floor(Math.random() * currentIndex);
 			currentIndex -= 1;
 
-			// And swap it with the current element.
 			temporaryValue = queue[currentIndex];
 			queue[currentIndex] = queue[randomIndex];
 			queue[randomIndex] = temporaryValue;
 		}
 
-		// Add first song again to queue
 		queue.unshift(firstSong);
 
-		// Return queue
 		return queue;
 	}
 

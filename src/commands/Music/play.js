@@ -1,4 +1,6 @@
 const { Command, RichMenu } = require('klasa');
+const { join } = require('path');
+const { MusicError } = require(join(__dirname, '..', '..', 'util', 'CustomErrors.js'));
 
 module.exports = class PlayCommand extends Command {
 	constructor(...args) {
@@ -20,7 +22,7 @@ module.exports = class PlayCommand extends Command {
 				songs = await this.client.lavalink.load(queryString);
 			} else {
 				const searchResult = await this.client.lavalink.load(`ytsearch: ${queryString}`);
-				if (!searchResult) throw new Error('No Song with this name found!');
+				if (!searchResult.length) throw new Error('No Song with this name found!');
 				const menu = new RichMenu(
 					new this.client.methods.Embed()
 						.setAuthor(msg.member.displayName, msg.author.displayAvatarURL())
@@ -39,6 +41,9 @@ module.exports = class PlayCommand extends Command {
 				if (choice === null) return collector.message.delete();
 				songs.push(searchResult[choice]);
 			}
+
+			if (!songs.length) throw new MusicError('No Song(s) found!');
+
 			if (songs.length > 1) {
 				return this._playlist(songs, msg, msg.member);
 			} else {
