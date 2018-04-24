@@ -9,11 +9,11 @@ module.exports = class ConfigUpdateEntryEvent extends Event {
 			this.client.shard.broadcastEval(`
 				this.console.debug('started broadcastEval');
 				if (this.shard.id !== ${this.client.shard.id}) {
-					this.client.console.debug('started if-statement inside broadcastEval');
+					this.console.debug('started if-statement inside broadcastEval');
 					const user = this.users.get('${configs.id}');
 					if (user) {
 						user.configs.sync();
-						this.client.console.debug('calling sync method on user');
+						this.console.debug('calling sync method on user');
 					}
 				}
 			`);
