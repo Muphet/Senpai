@@ -20,5 +20,10 @@ module.exports = class GuildCreateEvent extends Event {
 			`Bots: ${botCount}[${memberCount / botCount}]`,
 			`Shard Guild Count is now ${this.client.guilds.size}`
 		]);
+		if (!guild.available) return;
+		if (this.client.configs.guildBlacklist.includes(guild.id)) {
+			guild.leave();
+			this.client.emit('warn', `Blacklisted guild detected: ${guild.name} [${guild.id}]`);
+		}
 	}
 };

@@ -16,5 +16,6 @@ module.exports = class GuildDeleteEvent extends Event {
 			`Owner: ${guild.owner.name}[${guild.ownerID}]`,
 			`Shard Guild Count is now ${this.client.guilds.size}`
 		]);
+		if (guild.available && !this.client.configs.preserveConfigs) guild.configs.destroy().catch(() => null);
 	}
 };
