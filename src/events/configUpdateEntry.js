@@ -10,7 +10,7 @@ module.exports = class ConfigUpdateEntryEvent extends Event {
 				this.console.debug('started broadcastEval');
 				if (this.shard.id !== ${this.client.shard.id}) {
 					this.console.debug('started if-statement inside broadcastEval');
-					const user = this.users.fetch('${newConf.id}')
+					const user = this.users.get('${newConf.id}')
 					if (user) {
 						user.configs.sync();
 						this.console.debug('calling sync method on user');
