@@ -1,22 +1,23 @@
 const { Event } = require('klasa');
 
 module.exports = class ConfigUpdateEntryEvent extends Event {
-	run(configs) {
+	run(oldConf, newConf) {
 		this.client.console.debug('ConfigUpdateEntryEvent emitted');
 		if (!this.client.shard) return;
-		if (configs.gateway.type === 'users') {
+		if (newConf.gateway.type === 'users') {
 			this.client.console.debug('started user if-statement');
 			this.client.shard.broadcastEval(`
 				this.console.debug('started broadcastEval');
 				if (this.shard.id !== ${this.client.shard.id}) {
 					this.console.debug('started if-statement inside broadcastEval');
-					this.users.fetch('${configs.id}').then(user => {
+					const user = this.users.fetch('${newConf.id}')
+					if (user) {
 						user.configs.sync();
 						this.console.debug('calling sync method on user');
-					})
+					}
 				}
 			`);
-		} else if (configs.gateway.type === 'clientStorage') {
+		} else if (newConf.gateway.type === 'clientStorage') {
 			this.client.shard.broadcastEval(`
 				if (this.shard.id !== ${this.client.shard.id}) {
 					this.configs.sync();
