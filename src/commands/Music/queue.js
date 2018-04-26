@@ -10,7 +10,7 @@ module.exports = class QueueCommand extends Command {
 	}
 
 	async run(msg) {
-		const { queue, paused, playing } = msg.guild.music;
+		const { queue, paused, playing, loop } = msg.guild.music;
 		let time = queue.map(song => song.length).reduce((a, b) => a + b);
 		const chunks = this.getChunk(queue, 10);
 		time = this.format(time / 1000);
@@ -22,6 +22,7 @@ module.exports = class QueueCommand extends Command {
 				.addField(`Queue length`, time, true)
 				.addField('Playing?', playing ? 'Yes' : 'No', true)
 				.addField('Paused?', paused ? 'Yes' : 'No', true)
+				.addField('Loop', loop ? 'Yes' : 'No', true)
 		);
 		for (const page of chunks) {
 			menu.addPage(template => {
