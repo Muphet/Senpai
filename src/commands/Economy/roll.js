@@ -6,7 +6,7 @@ module.exports = class RollCommand extends Command {
 	constructor(...args) {
 		super(...args, {
 			aliases: ['dice', 'cube'],
-			usage: '<user:user> <amount_number:int{1}|amount_text:amount>',
+			usage: '<amount_number:int{1}|amount_text:amount>',
 			description: 'Rolls a dice'
 		});
 	}

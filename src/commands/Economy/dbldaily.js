@@ -17,7 +17,7 @@ module.exports = class DBLDaily extends Command {
 			.set('Authorization', this.client.config.tokens.dBots)
 			.query('userId', msg.author.id);
 		if (!voted) throw new UsageError(`You need to vote on Discord Bot List to use this command. You can do this here ${this.client.config.constants.voteLink}`);
-		await msg.author.configs.update({ currency: msg.author.configs.currency + 500, votedDateDBL: new Date().getTime() });
-		return msg.send(`You claimed your DBLDaily reward of 500¥, You can vote & claim it again in 24h`);
+		await msg.author.configs.update({ currency: msg.author.configs.currency + 5000, votedDateDBL: new Date().getTime() });
+		return msg.send(`You claimed your DBLDaily reward of 5000¥, You can vote & claim it again in 24h`);
 	}
 };

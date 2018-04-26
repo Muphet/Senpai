@@ -13,12 +13,7 @@ module.exports = class UrbanCommand extends Command {
 	async run(msg, [...query]) {
 		try {
 			const responses = await all(query.join(' '));
-			const display = new RichDisplay(new this.client.methods.Embed()
-				.setColor(0x673AB7)
-				.setAuthor(this.client.user.name, this.client.user.avatarURL())
-				.setTitle('Urban Dictonary results')
-				.setDescription('Scroll between the images using the provided reaction emotes.')
-			);
+			const display = new RichDisplay(new this.client.methods.Embed().setColor(0x673AB7));
 
 			for (let i = 0; i < responses.length; i++) {
 				display.addPage(template => template.setAuthor(responses[i].author)

@@ -42,7 +42,7 @@ module.exports = class SlotsCommand extends Command {
 
 	async run(msg, [amount]) {
 		let { currency } = msg.author.configs;
-		if (amount > msg.author.configs.currency) throw new EconomyError('You dont have that much money!');
+		if (amount > msg.author.configs.currency) throw new EconomyError('Invalid Funds...`');
 		const result = this._runSlots();
 		const resultString = result.visualize();
 		const { winCount, totalPoints } = result;

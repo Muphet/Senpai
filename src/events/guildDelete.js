@@ -10,12 +10,13 @@ module.exports = class GuildDeleteEvent extends Event {
 		});
 	}
 
-	run(guild) {
+	async run(guild) {
+		if (!guild.available) return;
 		this.client.console.log([
 			`Left ${guild.name}`,
-			`Owner: ${guild.owner.name}[${guild.ownerID}]`,
+			`Owner: ${(await this.client.users.fetch(guild.ownerID)).username}[${guild.ownerID}]`,
 			`Shard Guild Count is now ${this.client.guilds.size}`
 		]);
-		if (guild.available && !this.client.configs.preserveConfigs) guild.configs.destroy().catch(() => null);
+		if (!this.client.configs.preserveConfigs) guild.configs.destroy().catch(() => null);
 	}
 };

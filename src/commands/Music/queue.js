@@ -12,7 +12,7 @@ module.exports = class QueueCommand extends Command {
 	async run(msg) {
 		const { queue, paused, playing } = msg.guild.music;
 		let time = queue.map(song => song.length).reduce((a, b) => a + b);
-		const chunks = this.getQueueChunk(queue);
+		const chunks = this.getChunk(queue, 10);
 		time = this.format(time / 1000);
 		const menu = new RichDisplay(
 			new this.client.methods.Embed()
@@ -34,13 +34,5 @@ module.exports = class QueueCommand extends Command {
 			});
 		}
 		return menu.run(await msg.send('Loading Queue...'), { filter: (reaction, user) => user.id === msg.author.id });
-	}
-
-	getQueueChunk(queue) {
-		const splitted = [];
-		for (var i = 0; i < queue.length; i += 10) {
-			splitted.push(queue.slice(i, i + 10));
-		}
-		return splitted;
 	}
 };

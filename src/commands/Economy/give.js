@@ -13,7 +13,7 @@ module.exports = class GiveCommand extends Command {
 	}
 
 	async run(msg, [user, amount]) {
-		if (msg.author.configs.currency < amount) throw new EconomyError('You dont have that much money!');
+		if (msg.author.configs.currency < amount) throw new EconomyError('Invalid Funds...`');
 		if (user.bot) throw new UsageError('You cannot give bots money!');
 		if (msg.author.id === user.id) throw new UsageError('You cannot give yourself money!');
 		await msg.author.configs.update('currency', msg.author.configs.currency - amount);

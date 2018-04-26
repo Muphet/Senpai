@@ -13,7 +13,7 @@ module.exports = class extends Extendable {
 	get extend() {
 		const musicRoles = this.guild.configs.roles.music;
 		for (const id of this.roles.keys()) {
-			if (musicRoles.include(id)) return true;
+			if (musicRoles.includes(id)) return true;
 		}
 		return false;
 	}
