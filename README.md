@@ -38,7 +38,7 @@ also it uses the Libary [Discord.js](https://github.com/hydrabolt/discord.js) to
 
 ## Selfhosting
 
-This is official not supported but if you wanna try it anyway you would need a PostgresSQL server, a lavalink server and all deps specified in the package.json. You might instead just use the dockerfile to create a container.
+This is official not supported but if you wanna try it anyway you would need a MongoDB server, a lavalink server and all deps specified in the package.json. You might instead just use the dockerfile to create a container.
 ## Features
 
 ### Commands 

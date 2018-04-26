@@ -1,30 +1,29 @@
-const Events = require('../structures/new/Event.js');
+const { Event } = require('klasa');
 
-class GuildMemberAdd extends Events {
-	constructor(client) {
-		super(client);
-		this.name = 'guildMemberAdd';
+module.exports = class GuildMemberAddEvent extends Event {
+	constructor(...args) {
+		super(...args, {
+			name: 'guildMemberAdd',
+			enabled: true,
+			event: 'guildMemberAdd',
+			once: false
+		});
 	}
 
-	async run(member) {
-		const { welcomeEnabled, welcomeChannel, welcomeMessage } = await member.guild.getConfig();
-		if (!welcomeEnabled || !welcomeChannel) return;
-		member.guild.channels.get(welcomeChannel).send(this.replaceAll(welcomeMessage, member));
-	}
+	run(member) {
+		const { channels, welcome } = member.guild.configs;
+		const { enabled, joinMessage } = welcome;
+		const { welcome: welcomeChannel } = channels;
 
-	replaceAll(text, member) {
-		const { replace } = this;
-		let updatedText;
-		updatedText = replace(text, '{{user}}', member.toString());
-		updatedText = replace(updatedText, '{{username}}', member.user.username);
-		updatedText = replace(updatedText, '{{server}}', member.guild.name);
-		updatedText = replace(updatedText, '{{memberCount}}', member.guild.memberCount);
-		return updatedText;
-	}
+		if (!enabled || !welcomeChannel) return;
 
-	replace(text, search, replacement) {
-		return text.replace(RegExp(search, 'gi'), replacement);
+		return this.client.channels
+			.get(welcomeChannel)
+			.send(
+				joinMessage
+					.replace('{user}', member.toString())
+					.replace('{servername}', member.guild.name)
+					.replace('{username}', member.displayName)
+			);
 	}
-}
-
-module.exports = GuildMemberAdd;
+};

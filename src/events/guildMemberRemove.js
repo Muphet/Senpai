@@ -1,30 +1,29 @@
-const Events = require('../structures/new/Event.js');
+const { Event } = require('klasa');
 
-class GuildMemberRemove extends Events {
-	constructor(client) {
-		super(client);
-		this.name = 'guildMemberRemove';
+module.exports = class GuildMemberRemoveEvent extends Event {
+	constructor(...args) {
+		super(...args, {
+			name: 'guildMemberRemove',
+			enabled: true,
+			event: 'guildMemberRemove',
+			once: false
+		});
 	}
 
-	async run(member) {
-		const { welcomeEnabled, welcomeChannel, leaveMessage } = await member.guild.getConfig();
-		if (!welcomeEnabled || !welcomeChannel) return;
-		member.guild.channels.get(welcomeChannel).send(this.replaceAll(leaveMessage, member));
-	}
+	run(member) {
+		const { channels, welcome } = member.guild.configs;
+		const { enabled, leaveMessage } = welcome;
+		const { welcome: welcomeChannel } = channels;
 
-	replaceAll(text, member) {
-		const { replace } = this;
-		let updatedText;
-		updatedText = replace(text, '{{user}}', member.toString());
-		updatedText = replace(updatedText, '{{username}}', member.user.username);
-		updatedText = replace(updatedText, '{{server}}', member.guild.name);
-		updatedText = replace(updatedText, '{{memberCount}}', member.guild.memberCount);
-		return updatedText;
-	}
+		if (!enabled || !welcomeChannel) return;
 
-	replace(text, search, replacement) {
-		return text.replace(RegExp(search, 'gi'), replacement);
+		return this.client.channels
+			.get(welcomeChannel)
+			.send(
+				leaveMessage
+					.replace('{user}', member.toString())
+					.replace('{servername}', member.guild.name)
+					.replace('{username}', member.displayName)
+			);
 	}
-}
-
-module.exports = GuildMemberRemove;
+};

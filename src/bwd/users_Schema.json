@@ -1,0 +1,30 @@
+{  
+	"type":"Folder",
+	"currency":{
+		"type":"integer",
+		"array":false,
+		"default":100,
+		"min":null,
+		"max":null,
+		"sql":"INTEGER DEFAULT 1",
+		"configurable":true
+	},
+	"votedDate":{
+		"type":"integer",
+		"array":false,
+		"default": null,
+		"min":null,
+		"max":null,
+		"sql":"INTEGER DEFAULT null",
+		"configurable":true
+	},
+	"votedDateDBL":{
+		"type":"integer",
+		"array":false,
+		"default": null,
+		"min":null,
+		"max":null,
+		"sql":"INTEGER DEFAULT null",
+		"configurable":true
+	}
+}

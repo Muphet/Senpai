@@ -1,14 +1,16 @@
-const Events = require('../structures/new/Event.js');
+const { Event } = require('klasa');
 
-class ErrorEvent extends Events {
-	constructor(client) {
-		super(client);
-		this.name = 'error';
+module.exports = class ErrorEvent extends Event {
+	constructor(...args) {
+		super(...args, {
+			name: 'error',
+			enabled: true,
+			event: 'error',
+			once: false
+		});
 	}
 
-	run(error) {
-		this.client.log.error(error);
+	run(err) {
+		return this.client.console.error(err);
 	}
-}
-
-module.exports = ErrorEvent;
+};

@@ -1,23 +1,29 @@
-const Events = require('../structures/new/Event.js');
-const { post } = require('snekfetch');
+const { Event } = require('klasa');
 
-class JoinEvent extends Events {
-	constructor(client) {
-		super(client);
-		this.name = 'guildCreate';
+module.exports = class GuildCreateEvent extends Event {
+	constructor(...args) {
+		super(...args, {
+			name: 'guildCreate',
+			enabled: true,
+			event: 'guildCreate',
+			once: false
+		});
 	}
 
 	async run(guild) {
-		const size = await guild.client.shard.fetchClientValues('guilds.size');
-		const guildsizes = size.reduce((prev, val) => prev + val, 0);
-		await post(`https://discordbots.org/api/bots/${guild.client.user.id}/stats`)
-			.set('Authorization', this.client.config.dBotsToken)
-			.send({ server_count: guildsizes }); // eslint-disable-line camelcase
-		await post(`https://bots.discord.pw/api/bots/${guild.client.user.id}/stats`)
-			.set('Authorization', this.client.config.discordBotsToken)
-			.send({ server_count: guildsizes }); // eslint-disable-line camelcase
-		this.client.log.info(`${guild.client.user.username} Joined the Guild ${guild.name} size is now ${guildsizes}`);
+		if (!guild.available) return;
+		const botCount = guild.members.filter(member => member.user.bot).size;
+		const { memberCount } = guild;
+		this.client.console.log([
+			`Joined ${guild.name}`,
+			`Owner: ${(await guild.members.fetch(guild.ownerID)).displayName}[${guild.ownerID}]`,
+			`Members: ${memberCount}`,
+			`Bots: ${botCount}[${memberCount / botCount}]`,
+			`Shard Guild Count is now ${this.client.guilds.size}`
+		]);
+		if (this.client.configs.guildBlacklist.includes(guild.id)) {
+			guild.leave();
+			this.client.emit('warn', `Blacklisted guild detected: ${guild.name} [${guild.id}]`);
+		}
 	}
-}
-
-module.exports = JoinEvent;
+};

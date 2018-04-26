@@ -1,23 +1,22 @@
-const Events = require('../structures/new/Event.js');
-const { post } = require('snekfetch');
+const { Event } = require('klasa');
 
-class LeaveEvent extends Events {
-	constructor(client) {
-		super(client);
-		this.name = 'guildDelete';
+module.exports = class GuildDeleteEvent extends Event {
+	constructor(...args) {
+		super(...args, {
+			name: 'guildDelete',
+			enabled: true,
+			event: 'guildDelete',
+			once: false
+		});
 	}
 
 	async run(guild) {
-		const size = await guild.client.shard.fetchClientValues('guilds.size');
-		const guildsizes = size.reduce((prev, val) => prev + val, 0);
-		await post(`https://discordbots.org/api/bots/${guild.client.user.id}/stats`)
-			.set('Authorization', this.client.config.dBotsToken)
-			.send({ server_count: guildsizes }); // eslint-disable-line camelcase
-		await post(`https://bots.discord.pw/api/bots/${guild.client.user.id}/stats`)
-			.set('Authorization', this.client.config.discordBotsToken)
-			.send({ server_count: guildsizes }); // eslint-disable-line camelcase
-		this.client.log.info(`${guild.client.user.username} left the Guild ${guild.name} size is now ${guildsizes}`);
+		if (!guild.available) return;
+		this.client.console.log([
+			`Left ${guild.name}`,
+			`Owner: ${(await this.client.users.fetch(guild.ownerID)).username}[${guild.ownerID}]`,
+			`Shard Guild Count is now ${this.client.guilds.size}`
+		]);
+		if (!this.client.configs.preserveConfigs) guild.configs.destroy().catch(() => null);
 	}
-}
-
-module.exports = LeaveEvent;
+};

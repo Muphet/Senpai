@@ -24,13 +24,17 @@ ENV bottoken=\
     googleAPIKey=\
     owmAPIKey=\
     dBotsToken=\
+    wolkeToken=\
     discordBotsToken=\
     supportServerLink=\
     voteLink=\
     pixabayToken=\
     databaseName=\
-    databaseUser=\
-    databasePW=\
-    databaseHost=
+    databaseHost=\
+    databasePort=\
+    lavalinkPW=\
+    lavalinkHost=\
+    lavalinkPortWS=\
+    LavalinkPort=
 # Run command
 CMD ["node", "."]
