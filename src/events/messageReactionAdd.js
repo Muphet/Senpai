@@ -55,8 +55,9 @@ module.exports = class MessageReactionAddEvent extends Event {
 	}
 
 	async editStarboardMessage({ reactionCount, starboard, messageID }) {
-		let message = await starboard.messages.fetch(messageID);
-		message.embeds[0].setFooter(`${reactionCount}⭐`);
-		return message.edit(message.embeds[0]);
+		const message = await starboard.messages.fetch(messageID);
+		const embed = message.embeds[0];
+		embed.setFooter(`${reactionCount}⭐`);
+		return message.edit(embed);
 	}
 };

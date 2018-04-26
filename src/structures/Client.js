@@ -2,7 +2,7 @@ const { Client } = require('klasa');
 const { join } = require('path');
 const { version } = require(join(__dirname, '..', '..', 'package.json'));
 const CustomPieceStore = require(join(__dirname, 'CustomPieceStore.js'));
-const permissionsLevels = require(join(__dirname, 'PermissionLevel.js'));
+const permissionLevels = require(join(__dirname, 'PermissionLevel.js'));
 const {
 	bottoken: bot,
 	osuToken: osu,
@@ -31,7 +31,7 @@ module.exports = class SenpaiClient extends Client {
 			cmdLogging: true,
 			ignoreSelf: true,
 			ignoreBots: true,
-			permissionsLevels,
+			permissionLevels,
 			providers: { default: 'mongo' },
 			pieceDefaults: { commands: { deletable: true, promptLimit: 2, promptTime: 60000, cooldown: 2 } },
 			schedule: { interval: 1000 },
