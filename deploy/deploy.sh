@@ -16,7 +16,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
 	exit 0
 fi
 
-if [ "$TRAVIS_BRANCH" == dependabot-* ]; then
+if [ "$TRAVIS_BRANCH" == dependabot* ]; then
 	echo -e "\e[36m\e[1mBuild triggered for dependabot PR #${TRAVIS_PULL_REQUEST} to branch \"${TRAVIS_BRANCH}\" - only running test."
 	test
 	exit 0
