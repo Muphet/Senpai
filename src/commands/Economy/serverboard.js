@@ -7,7 +7,7 @@ module.exports = class ServerboardCommand extends Command {
 
 	async run(msg) {
 		const members = await msg.guild.members.fetch();
-		const users = members.filter().map(mem => mem.user).sort((user1, user2) => user2.configs.currency - user1.configs.currency);
+		const users = members.filter(mem => !mem.user.bot).map(mem => mem.user).sort((user1, user2) => user2.configs.currency - user1.configs.currency);
 
 		const display = new RichDisplay(new this.client.methods.Embed()
 			.setColor(0xFFA500)
