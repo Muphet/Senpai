@@ -26,7 +26,8 @@ module.exports = class MessageReactionAddEvent extends Event {
 		if (reactionCount < count) return;
 		let sentMessage;
 		if (entry) {
-			sentMessage = await this.editStarboardMessage({ reactionCount, starboard });
+			const messageID = entry.sentMessage;
+			sentMessage = await this.editStarboardMessage({ reactionCount, starboard, messageID });
 		} else {
 			sentMessage = await this.createStarboardMessage({ message, reactionCount, starboard });
 		}

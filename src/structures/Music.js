@@ -80,16 +80,12 @@ module.exports = class Music {
 	_handleEvent(event) {
 		if (event.type === 'TrackEndEvent') {
 			const shifted = this.queue.shift();
-			if (event.reason === 'FINISHED') return this._finished(event, shifted);
-			else if (event.reason === 'STOPPED') return this._stopped(event, shifted);
-			else if (event.reason === 'FAILED') return this._failed(event);
+			return this._finished(event, shifted);
+		} else if (event.type === 'TrackExceptionEvent') {
+			return this._failed(event);
 		} else {
 			return this._stuck();
 		}
-	}
-
-	_stuck() {
-		this._stop();
 	}
 
 	_finished(event, shifted) {
@@ -98,17 +94,15 @@ module.exports = class Music {
 		return this._play();
 	}
 
-	_failed() {
+	_failed(event) {
 		const { channel } = this;
-		if (channel) channel.send('Sorry seems like i encountered an issue while playing this song, so i skipped it');
+		if (channel) channel.send(`\`[ERROR]\` ${event.error}\nSong was skipped due error.`);
 		if (!this.queue.length) return;
 		return this._play();
 	}
 
-	_stopped(event, shifted) {
-		if (this.loop) this.queue.push(shifted);
-		if (!this.queue.length) return;
-		return this._play();
+	_stuck() {
+		this._stop();
 	}
 
 	_shuffle(queue) {

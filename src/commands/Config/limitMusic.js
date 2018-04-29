@@ -6,7 +6,7 @@ module.exports = class LimitMusicCommand extends Command {
 			runIn: ['text'],
 			permLevel: 6,
 			usage: '[limit:boolean]',
-			description: 'Changes the musiclog channel set for this server'
+			description: 'disabled/enables the need to have a Music role to use music commands.'
 		});
 	}
 

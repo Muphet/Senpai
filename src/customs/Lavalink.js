@@ -17,6 +17,7 @@ module.exports = class Lavalink extends Piece {
 			hosts: { ws: `ws://${lavalinkHost}:${lavalinkPortWS}`, rest: `http://${lavalinkHost}:${LavalinkPort}` }
 		});
 		await this.client.lavalink.connect();
+		this.client.lavalink.on('error', err => this.client.emit('error', err));
 		this.client.console.debug('Lavalink Websocket Connection established');
 	}
 };
