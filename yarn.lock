@@ -186,7 +186,7 @@ callsites@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-0.2.0.tgz#afab96262910a7f33c19a5775825c69f34e350ca"
 
-canvas@2.0.0-alpha.12:
+canvas@^2.0.0-alpha.12:
   version "2.0.0-alpha.12"
   resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.0.0-alpha.12.tgz#01ae4efc037b982be561b17f3c9707f95c544a90"
   dependencies:
@@ -356,7 +356,7 @@ detect-libc@^1.0.2:
 
 discord.js@discordjs/discord.js:
   version "12.0.0-dev"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/64caa33594212206b6f146c9ecc92f1f4cb5d138"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/934e90b921cba8b1498609f90c63da3ef81959aa"
   dependencies:
     pako "^1.0.0"
     prism-media "^0.2.0"
@@ -380,9 +380,9 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-eslint-config-aqua@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-aqua/-/eslint-config-aqua-2.0.1.tgz#fef4fe8ef8b7f63063e55968b58e34c79f058cbe"
+eslint-config-aqua@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-aqua/-/eslint-config-aqua-3.0.0.tgz#67a86d8c836c83090566a48667682389ee663b5c"
 
 eslint-scope@^3.7.1:
   version "3.7.1"
@@ -598,8 +598,8 @@ glob@^7.0.3, glob@^7.0.5, glob@^7.1.2:
     path-is-absolute "^1.0.0"
 
 globals@^11.0.1:
-  version "11.4.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-11.4.0.tgz#b85c793349561c16076a3c13549238a27945f1bc"
+  version "11.5.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-11.5.0.tgz#6bc840de6771173b191f13d3a9c94d441ee92642"
 
 globby@^5.0.0:
   version "5.0.0"
@@ -925,8 +925,8 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
 
 needle@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/needle/-/needle-2.2.0.tgz#f14efc69cee1024b72c8b21c7bdf94a731dc12fa"
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/needle/-/needle-2.2.1.tgz#b5e325bd3aae8c2678902fa296f729455d1d3a7d"
   dependencies:
     debug "^2.1.2"
     iconv-lite "^0.4.4"
@@ -1441,8 +1441,8 @@ weather-js@^2.0.0:
     xml2js "0.4.x"
 
 weebts@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/weebts/-/weebts-1.0.4.tgz#967e7ec67bb8d9fae2bd1d08a7fe12a2f59fe2c4"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/weebts/-/weebts-1.0.5.tgz#7093ab87b8b149f98ff53f7b3844e1c08e76cf0f"
   dependencies:
     snekfetch "^3.6.4"
 

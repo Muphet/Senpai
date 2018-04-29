@@ -19,10 +19,10 @@ module.exports = class QueueCommand extends Command {
 				.setColor('RANDOM')
 				.setAuthor(msg.member.displayName, msg.author.displayAvatarURL())
 				.setTitle(`Music Queue for ${msg.guild.name}`)
-				.addField(`Queue length`, time, true)
 				.addField('Playing?', playing ? 'Yes' : 'No', true)
 				.addField('Paused?', paused ? 'Yes' : 'No', true)
-				.addField('Loop', loop ? 'Yes' : 'No', true)
+				.addField('Loop?', loop ? 'Yes' : 'No', true)
+				.addField(`Queue length`, time, true)
 		);
 		for (const page of chunks) {
 			menu.addPage(template => {
