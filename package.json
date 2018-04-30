@@ -23,7 +23,7 @@
     "eslint-config-aqua": "^3.0.0"
   },
   "dependencies": {
-    "canvas": "^2.0.0-alpha.12",
+    "canvas": "2.0.0-alpha.9",
     "discord.js": "discordjs/discord.js",
     "figlet": "^1.2.0",
     "fs-nextra": "^0.3.2",
