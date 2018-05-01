@@ -35,7 +35,7 @@
     "relevant-urban": "^2.0.0",
     "seedrandom": "^2.4.3",
     "slot-machine": "^2.1.0",
-    "snekfetch": "3.6.4",
+    "snekfetch": "4.0.0",
     "weather-js": "^2.0.0",
     "weebts": "^1.0.5",
     "zlib-sync": "^0.1.4"
