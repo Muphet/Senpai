@@ -1,4 +1,4 @@
-const { Permissions: { Flags: { SEND_MESSAGES } } } = require('discord.js');
+const { Permissions: { FLAGS: { SEND_MESSAGES } } } = require('discord.js');
 const { join } = require('path');
 const Song = require(join(__dirname, 'Song'));
 

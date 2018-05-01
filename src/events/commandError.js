@@ -1,7 +1,7 @@
 const { join } = require('path');
 const { Event } = require('klasa');
 const { DiscordAPIError } = require('discord.js');
-const { Permissions: { Flags: { SEND_MESSAGES } } } = require('discord.js');
+const { Permissions: { FLAGS: { SEND_MESSAGES } } } = require('discord.js');
 const { APIError, MusicError, PermissionError, UsageError, EconomyError } = require(join(__dirname, '..', 'util', 'CustomErrors.js'));
 
 module.exports = class extends Event {
