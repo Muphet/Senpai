@@ -23,7 +23,7 @@ module.exports = class LeaderboardCommand extends Command {
 				for (const userObj of userChunk) {
 					index++;
 					const user = this.client.users.get(userObj.id);
-					template.addField(`#${index} ${user.tag}`, userObj.currency.toString());
+					if (user) template.addField(`#${index} ${user.tag}`, userObj.currency.toString());
 				}
 				return template;
 			});

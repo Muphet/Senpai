@@ -3,8 +3,8 @@
 
 
 "@types/node@*":
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.0.tgz#c40f8e07dce607d3ef25a626b93a6a7cdcf97881"
+  version "7.0.62"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.62.tgz#62a939798fb2aabb32dd2a37228ca95c187fdc3e"
 
 "@types/node@^8.0.4":
   version "8.10.10"
@@ -503,7 +503,7 @@ formidable@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.1.tgz#70fb7ca0290ee6ff961090415f4b3df3d2082659"
 
-fs-nextra@^0.3.2:
+fs-nextra@^0.3.2, fs-nextra@^0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/fs-nextra/-/fs-nextra-0.3.4.tgz#a2aba67df611e58834c1f50c40b8e3928cc4a9b7"
 
@@ -727,13 +727,13 @@ jsprim@^1.2.2:
 
 klasa@dirigeants/klasa:
   version "0.5.0-dev"
-  resolved "https://codeload.github.com/dirigeants/klasa/tar.gz/96d330850c453d8fb5c083f693b449c538b3cb7c"
+  resolved "https://codeload.github.com/dirigeants/klasa/tar.gz/16d579544b727c4d50607c857634a90eba8454e6"
   dependencies:
     fs-nextra "^0.3.2"
 
-lavalink@^0.4.0:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/lavalink/-/lavalink-0.4.3.tgz#2960abac833846f87e9a093dcd5e8aabca988a63"
+lavalink@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/lavalink/-/lavalink-0.5.0.tgz#32ead8a1314026fb479928287f7845f315fc7046"
   dependencies:
     ws "^4.0.0"
 
@@ -800,7 +800,7 @@ mongodb-core@3.0.7:
     bson "~1.0.4"
     require_optional "^1.0.1"
 
-mongodb@^3.0.6:
+mongodb@^3.0.7:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.0.7.tgz#cfcbaee992d78dabca67177f8f9db9cf13ac3a44"
   dependencies:
@@ -1240,7 +1240,7 @@ weather-js@^2.0.0:
     request "2.x.x"
     xml2js "0.4.x"
 
-weebts@^1.0.4:
+weebts@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/weebts/-/weebts-1.0.5.tgz#7093ab87b8b149f98ff53f7b3844e1c08e76cf0f"
   dependencies:

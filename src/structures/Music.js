@@ -1,3 +1,4 @@
+const { Permissions: { Flags: { SEND_MESSAGES } } } = require('discord.js');
 const { join } = require('path');
 const Song = require(join(__dirname, 'Song'));
 
@@ -54,7 +55,7 @@ module.exports = class Music {
 	}
 
 	reset() {
-		if (this.queue.length > 0) this.queue.length = 0;
+		if (this.queue.length) this.queue.length = 0;
 		if (this.loop) this.loop = false;
 		if (this.playing) this._stop();
 	}
@@ -62,13 +63,13 @@ module.exports = class Music {
 	async _play(options) {
 		if (this.busy || !this.queue.length) return;
 		this.preparing = true;
-		const { channel } = this;
+		const { channel, nowPlaying } = this;
 		const embed = new this.client.methods.Embed()
-			.setAuthor(this.nowPlaying.userDisplayName, this.nowPlaying.userAvatarURL)
-			.addField('Now Playing:', `[${this.nowPlaying.title}](${this.nowPlaying.url})`)
+			.setAuthor(nowPlaying.userDisplayName, nowPlaying.userAvatarURL)
+			.addField('Now Playing:', `[${nowPlaying.title}](${nowPlaying.url})`)
 			.setColor('RANDOM');
-		if (channel) channel.send(embed);
-		const { track } = this.nowPlaying;
+		if (channel && channel.permissionsFor(channel.guild.me).has(SEND_MESSAGES)) channel.send(embed);
+		const { track } = nowPlaying;
 		await this.player.play(track, options);
 		this.preparing = false;
 	}
@@ -78,8 +79,8 @@ module.exports = class Music {
 	}
 
 	_handleEvent(event) {
+		const shifted = this.queue.shift();
 		if (event.type === 'TrackEndEvent') {
-			const shifted = this.queue.shift();
 			return this._finished(event, shifted);
 		} else if (event.type === 'TrackExceptionEvent') {
 			return this._failed(event);
@@ -90,19 +91,18 @@ module.exports = class Music {
 
 	_finished(event, shifted) {
 		if (this.loop) this.queue.push(shifted);
-		if (!this.queue.length) return;
 		return this._play();
 	}
 
 	_failed(event) {
 		const { channel } = this;
-		if (channel) channel.send(`\`[ERROR]\` ${event.error}\nSong was skipped due error.`);
-		if (!this.queue.length) return;
-		return this._play();
+		if (channel && channel.permissionsFor(channel.guild.me).has(SEND_MESSAGES)) channel.send(`\`[ERROR]\` ${event.error}\nSong was skipped due error.`);
 	}
 
 	_stuck() {
-		this._stop();
+		const { channel } = this;
+		if (channel && channel.permissionsFor(channel.guild.me).has(SEND_MESSAGES)) channel.send(`\`[Track Got Stuck]\` Skipped to the next one.`);
+		return this._play();
 	}
 
 	_shuffle(queue) {
